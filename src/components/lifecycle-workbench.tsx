@@ -19,6 +19,17 @@ type Result = {
 };
 
 const gbp = (n: number) => `£${num(n)}`;
+const ZONES = ["Discover", "Define", "Design", "Build", "Release", "Operate", "Retire"];
+const LINES: [string, string][] = [
+  ["str", "Strategy & Product"], ["ux", "Experience & Design"], ["arc", "Architecture & Integration"], ["dat", "Data & AI"],
+  ["eng", "Engineering"], ["qa", "Quality"], ["sec", "Security & Compliance"], ["ops", "Delivery & Operations"],
+  ["gov", "Governance & Finance"], ["doc", "Documentation"],
+];
+const SCALES: [string, string][] = [
+  ["under-100", "Under 100 users"], ["100-1k", "100 to 1,000"], ["1k-10k", "1,000 to 10,000"],
+  ["10k-100k", "10,000 to 100,000"], ["100k-plus", "Over 100,000"],
+];
+const toggle = <T,>(list: T[], v: T) => (list.includes(v) ? list.filter((x) => x !== v) : [...list, v]);
 const PRIORITIES = ["speed", "cost", "quality", "risk"] as const;
 const COMPLIANCE = ["gdpr", "hipaa", "pci", "iso27001", "soc2", "wcag"];
 const VERDICT_TONE: Record<string, "ok" | "warn" | "muted"> = { buy: "ok", configure: "warn", build: "muted" };
@@ -31,6 +42,13 @@ export function LifecycleWorkbench() {
   const [ai, setAi] = useState(true);
   const [legacy, setLegacy] = useState(false);
   const [compliance, setCompliance] = useState<string[]>([]);
+  const [sector, setSector] = useState("");
+  const [scale, setScale] = useState("");
+  const [zones, setZones] = useState<number[]>([]);
+  const [lines, setLines] = useState<string[]>([]);
+  const [differentiator, setDifferentiator] = useState(0.5);
+  const [budget, setBudget] = useState("");
+  const [skills, setSkills] = useState("");
   const [prio, setPrio] = useState<Record<string, number>>({ speed: 0.5, cost: 0.5, quality: 0.5, risk: 0.5 });
   const [result, setResult] = useState<Result | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -43,7 +61,15 @@ export function LifecycleWorkbench() {
       const res = await fetch("/api/lifecycle", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ orgType, teamSize, durationMonths: months, growth, ai, legacy, compliance, priorities: prio }),
+        body: JSON.stringify({
+          orgType, teamSize, durationMonths: months, growth, ai, legacy, compliance, priorities: prio, differentiator,
+          ...(sector.trim() && { sector: sector.trim() }),
+          ...(scale && { scale }),
+          ...(zones.length && { zones }),
+          ...(lines.length && { lines }),
+          ...(+budget > 0 && { monthlyBudgetGBP: +budget }),
+          existingSkills: skills.split(",").map((x) => x.trim()).filter(Boolean),
+        }),
       });
       const data: Result = await res.json();
       if (data.status !== "OK") throw new Error((data.errors ?? ["Request failed"]).join("; "));
@@ -74,6 +100,18 @@ export function LifecycleWorkbench() {
           <Field label="Duration (months)">
             <input type="number" min={1} value={months} onChange={(e) => setMonths(Math.max(1, +e.target.value || 1))} />
           </Field>
+          <Field label="Sector" hint="Free text, e.g. fintech, nhs">
+            <input type="text" value={sector} onChange={(e) => setSector(e.target.value)} placeholder="Any" />
+          </Field>
+          <Field label="User scale">
+            <select value={scale} onChange={(e) => setScale(e.target.value)}>
+              <option value="">Default for org type</option>
+              {SCALES.map(([v, l]) => <option key={v} value={v}>{l}</option>)}
+            </select>
+          </Field>
+          <Field label="Monthly budget (£)" hint="Optional. Shows a budget check.">
+            <input type="number" min={0} value={budget} onChange={(e) => setBudget(e.target.value)} placeholder="Not set" />
+          </Field>
           <Field label="Growth">
             <select value={growth} onChange={(e) => setGrowth(e.target.value)}>
               <option value="stable">Stable</option><option value="medium">Medium</option>
@@ -85,6 +123,33 @@ export function LifecycleWorkbench() {
           <label><input type="checkbox" checked={ai} onChange={(e) => setAi(e.target.checked)} /> AI / ML in scope</label>
           <label><input type="checkbox" checked={legacy} onChange={(e) => setLegacy(e.target.checked)} /> Modernising an existing system</label>
         </div>
+        <Field label="Lifecycle phases" hint="None selected = the whole lifecycle">
+          <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+            {ZONES.map((z, i) => (
+              <Button key={z} size="sm" variant={zones.includes(i + 1) ? "primary" : "subtle"} aria-pressed={zones.includes(i + 1)}
+                onClick={() => setZones((cur) => toggle(cur, i + 1))}>{i + 1} {z}</Button>
+            ))}
+          </div>
+        </Field>
+        <div style={{ height: 12 }} />
+        <Field label="Discipline focus" hint="Weights the chosen disciplines up. None = no focus.">
+          <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+            {LINES.map(([id, name]) => (
+              <Button key={id} size="sm" variant={lines.includes(id) ? "primary" : "subtle"} aria-pressed={lines.includes(id)}
+                onClick={() => setLines((cur) => toggle(cur, id))}>{name}</Button>
+            ))}
+          </div>
+        </Field>
+        <div style={{ height: 12 }} />
+        <div style={{ display: "grid", gap: 12, gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))" }}>
+          <Field label={`Differentiator: ${differentiator.toFixed(2)}`} hint="How much this capability sets you apart. High favours build.">
+            <input type="range" min={0} max={1} step={0.05} value={differentiator} onChange={(e) => setDifferentiator(+e.target.value)} />
+          </Field>
+          <Field label="In-house skills" hint="Comma separated. Empty means none declared, which favours buying.">
+            <input type="text" value={skills} onChange={(e) => setSkills(e.target.value)} placeholder="react, postgres, security" />
+          </Field>
+        </div>
+        <div style={{ height: 12 }} />
         <Field label="Compliance regimes">
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
             {COMPLIANCE.map((c) => (
@@ -114,6 +179,11 @@ export function LifecycleWorkbench() {
             <StatTile label="Monthly labour" value={gbp(result.cost.monthlyLabourGBP)} hint={`${result.cost.durationMonths} months`} icon="clock" />
             <StatTile label="Focus pillars" value={String(focus.length)} hint="cover 80% of the weight" icon="grid" />
           </Stats>
+          {result.cost.budget && (
+            <Banner tone={result.cost.budget.withinBudget ? "ok" : "warn"} icon={result.cost.budget.withinBudget ? "check" : "alert"}>
+              Monthly labour is {Math.round(result.cost.budget.utilisation * 100)}% of the monthly budget{result.cost.budget.withinBudget ? "." : ", so the team is larger than the budget supports."}
+            </Banner>
+          )}
           <Banner tone="muted" icon="alert">{result.cost.caveat}</Banner>
 
           <Section title="Pillar weights" subtitle="Where the lifecycle effort should go.">
