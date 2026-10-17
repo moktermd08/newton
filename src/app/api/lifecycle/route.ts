@@ -1,10 +1,12 @@
 import { NextResponse } from "next/server";
 import { runLifecycle } from "@engine";
+import { getSession } from "@/lib/auth";
 
 export const runtime = "nodejs";
 
 /** POST an organisation profile, get Newton's lifecycle selections back. See engine/README.md for the fields. */
 export async function POST(req: Request) {
+  if (!(await getSession())) return NextResponse.json({ status: "ERROR", errors: ["Not signed in"] }, { status: 401 });
   let body: unknown;
   try {
     body = await req.json();

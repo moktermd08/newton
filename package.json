@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "engine:test": "npm --prefix engine test",
-    "engine:run": "npm --prefix engine start --"
+    "engine:run": "npm --prefix engine start --",
+    "auth:setup": "node scripts/auth-setup.mjs"
   },
   "dependencies": {
     "lucide-react": "^1.47.0",

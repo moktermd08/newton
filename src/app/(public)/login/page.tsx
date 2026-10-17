@@ -1,14 +1,15 @@
-import { Button, Card, CardHeader, Field } from "@gg/ui";
+import { redirect } from "next/navigation";
+import { Card, CardHeader } from "@gg/ui";
+import { LoginForm } from "@/components/login-form";
+import { getSession, safeNext } from "@/lib/auth";
 
-export default function Login() {
+export default async function Login({ searchParams }: { searchParams: Promise<{ next?: string }> }) {
+  const next = safeNext((await searchParams).next);
+  if (await getSession()) redirect(next);
   return (
     <Card className="auth-card">
       <CardHeader title="Sign in" subtitle="Use your admin account." />
-      <form className="grid gap-3">
-        <Field label="Email"><input type="email" name="email" autoComplete="email" /></Field>
-        <Field label="Password"><input type="password" name="password" autoComplete="current-password" /></Field>
-        <Button variant="primary" type="submit">Sign in</Button>
-      </form>
+      <LoginForm next={next} />
     </Card>
   );
 }
