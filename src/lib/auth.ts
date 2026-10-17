@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { SESSION_COOKIE, verifySessionToken } from "./session";
+import { SESSION_COOKIE, SESSION_TTL_SECONDS, createSessionToken, verifySessionToken } from "./session";
 import { getUserById, type PublicUser } from "./users";
 
 /**
@@ -13,8 +13,22 @@ export async function getSession(): Promise<{ sub: string; user: PublicUser } | 
   if (!payload) return null;
   const stored = await getUserById(payload.sub);
   if (!stored || stored.disabled) return null;
+  // Whole-second compare: a token minted in the same second as the change is the one issued by the change itself.
+  if (stored.sessionsValidFrom && payload.iat < Math.floor(Date.parse(stored.sessionsValidFrom) / 1000)) return null;
   const { passwordHash: _hash, ...user } = stored;
   return { sub: user.id, user };
+}
+
+/** Sets the session cookie for a user. Used by sign-in and when a password change must keep the current session alive. */
+export async function startSession(userId: string) {
+  const jar = await cookies();
+  jar.set(SESSION_COOKIE, createSessionToken(userId), {
+    httpOnly: true,
+    sameSite: "lax",
+    secure: process.env.NODE_ENV === "production",
+    path: "/",
+    maxAge: SESSION_TTL_SECONDS,
+  });
 }
 
 /** Use at the top of anything that must be signed in. The proxy is the first gate; this is the second. */

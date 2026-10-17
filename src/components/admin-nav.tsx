@@ -10,6 +10,7 @@ const groups = (isAdmin: boolean, userCount: number): NavGroup[] => [
     ...(isAdmin ? [{ href: "/admin/users", label: "Users", icon: "users" as const, count: userCount }] : []),
   ] },
   { label: "Site", items: [
+    { href: "/admin/account", label: "Account", icon: "shield" },
     { href: "/", label: "View public site", icon: "home" },
   ] },
 ];

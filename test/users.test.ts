@@ -100,3 +100,13 @@ test("a corrupt file stops the app and is not overwritten", async () => {
   await assert.rejects(mk("x@example.com"));
   assert.equal(readFileSync(f, "utf8"), "{ not json");
 });
+
+test("changing a password marks the time before which sessions are void", async () => {
+  fresh();
+  const u = await mk("s@example.com");
+  assert.equal((await users.getUserById(u.id))?.sessionsValidFrom, undefined, "no marker until a password changes");
+  const before = Date.now();
+  await users.setPasswordHash(u.id, "scrypt$n$h");
+  const marker = (await users.getUserById(u.id))?.sessionsValidFrom;
+  assert.ok(marker && Date.parse(marker) >= before - 1000);
+});

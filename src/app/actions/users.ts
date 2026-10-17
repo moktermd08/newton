@@ -1,6 +1,6 @@
 "use server";
 import { revalidatePath } from "next/cache";
-import { requireAdmin } from "@/lib/auth";
+import { requireAdmin, startSession } from "@/lib/auth";
 import { hashPassword } from "@/lib/password";
 import { UserError, createUser, deleteUser, setDisabled, setPasswordHash, setRole } from "@/lib/users";
 
@@ -61,8 +61,9 @@ export async function manageUser(_prev: UserFormState, formData: FormData): Prom
       case "reset": {
         const password = String(formData.get("password") ?? "");
         checkPassword(password);
-        await setPasswordHash(id, await hashPassword(password));
-        return "Password reset.";
+        await setPasswordHash(id, await hashPassword(password)); // signs the account out everywhere
+        if (isSelf) await startSession(id);                      // ...except the admin who just reset their own
+        return isSelf ? "Password reset." : "Password reset. They have been signed out.";
       }
       case "delete":
         if (isSelf) throw new UserError("You cannot delete your own account. Ask another admin.");

@@ -3,7 +3,7 @@ import { createHmac, timingSafeEqual } from "node:crypto";
 export const SESSION_COOKIE = "newton_session";
 export const SESSION_TTL_SECONDS = 8 * 60 * 60;
 
-type Payload = { sub: string; exp: number };
+type Payload = { sub: string; iat: number; exp: number };
 
 /** AUTH_SECRET signs the session cookie. Missing or short means auth cannot work, so fail closed. */
 function secret(): string {
@@ -16,7 +16,8 @@ const b64 = (b: Buffer | string) => Buffer.from(b).toString("base64url");
 const sign = (data: string) => createHmac("sha256", secret()).update(data).digest();
 
 export function createSessionToken(sub: string, now = Date.now()): string {
-  const body = b64(JSON.stringify({ sub, exp: Math.floor(now / 1000) + SESSION_TTL_SECONDS } satisfies Payload));
+  const iat = Math.floor(now / 1000);
+  const body = b64(JSON.stringify({ sub, iat, exp: iat + SESSION_TTL_SECONDS } satisfies Payload));
   return `${body}.${b64(sign(body))}`;
 }
 
@@ -29,8 +30,9 @@ export function verifySessionToken(token: string | undefined | null, now = Date.
   const given = Buffer.from(mac, "base64url");
   if (given.length !== expected.length || !timingSafeEqual(given, expected)) return null;
   try {
-    const p = JSON.parse(Buffer.from(body, "base64url").toString("utf8")) as Payload;
-    return typeof p.sub === "string" && typeof p.exp === "number" && p.exp * 1000 > now ? p : null;
+    const p = JSON.parse(Buffer.from(body, "base64url").toString("utf8")) as Partial<Payload>;
+    // Tokens issued before `iat` existed read as issued at 0, so a password change still ends them.
+    return typeof p.sub === "string" && typeof p.exp === "number" && p.exp * 1000 > now ? { sub: p.sub, iat: typeof p.iat === "number" ? p.iat : 0, exp: p.exp } : null;
   } catch {
     return null;
   }

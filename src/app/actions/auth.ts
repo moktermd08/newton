@@ -1,24 +1,13 @@
 "use server";
 import { cookies, headers } from "next/headers";
 import { redirect } from "next/navigation";
-import { safeNext } from "@/lib/auth";
+import { safeNext, startSession } from "@/lib/auth";
 import { verifyPassword } from "@/lib/password";
-import { SESSION_COOKIE, SESSION_TTL_SECONDS, createSessionToken } from "@/lib/session";
+import { SESSION_COOKIE } from "@/lib/session";
+import { clearFailures, isLockedOut, recordFailure } from "@/lib/throttle";
 import { getUserByEmail, hasUsers, recordLogin } from "@/lib/users";
 
 export type LoginState = { error?: string; email?: string } | undefined;
-
-// In-memory throttle: 5 failures per IP in 15 minutes. Per server process, so it resets on restart and
-// does not span instances; put a shared store behind it before running more than one.
-const WINDOW_MS = 15 * 60 * 1000;
-const MAX_FAILURES = 5;
-const failures = new Map<string, number[]>();
-
-function recent(key: string, now: number) {
-  const list = (failures.get(key) ?? []).filter((t) => now - t < WINDOW_MS);
-  failures.set(key, list);
-  return list;
-}
 
 export async function login(_prev: LoginState, formData: FormData): Promise<LoginState> {
   const email = String(formData.get("email") ?? "").trim().toLowerCase();
@@ -27,9 +16,8 @@ export async function login(_prev: LoginState, formData: FormData): Promise<Logi
   if (!email || !password) return { error: "Enter your email and password.", email };
 
   const h = await headers();
-  const ip = h.get("x-forwarded-for")?.split(",")[0]?.trim() || "local";
-  const now = Date.now();
-  if (recent(ip, now).length >= MAX_FAILURES) return { error: "Too many attempts. Try again in 15 minutes.", email };
+  const key = `login:${h.get("x-forwarded-for")?.split(",")[0]?.trim() || "local"}`;
+  if (isLockedOut(key)) return { error: "Too many attempts. Try again in 15 minutes.", email };
 
   if (!(await hasUsers())) return { error: "Sign-in is not set up. Run `npm run auth:setup`.", email };
 
@@ -37,20 +25,13 @@ export async function login(_prev: LoginState, formData: FormData): Promise<Logi
   const user = await getUserByEmail(email);
   const passwordOk = await verifyPassword(password, user && !user.disabled ? user.passwordHash : undefined);
   if (!passwordOk || !user) {
-    failures.set(ip, [...recent(ip, now), now]);
+    recordFailure(key);
     return { error: "Incorrect email or password.", email };
   }
 
-  failures.delete(ip);
-  const jar = await cookies();
+  clearFailures(key);
   await recordLogin(user.id);
-  jar.set(SESSION_COOKIE, createSessionToken(user.id), {
-    httpOnly: true,
-    sameSite: "lax",
-    secure: process.env.NODE_ENV === "production",
-    path: "/",
-    maxAge: SESSION_TTL_SECONDS,
-  });
+  await startSession(user.id);
   redirect(next);
 }
 

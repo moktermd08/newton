@@ -21,6 +21,8 @@ export type StoredUser = {
   disabled: boolean;
   createdAt: string;
   lastLoginAt: string | null;
+  /** Sessions issued before this time are void. Set whenever the password changes. Absent = never changed. */
+  sessionsValidFrom?: string;
 };
 export type PublicUser = Omit<StoredUser, "passwordHash">;
 
@@ -129,7 +131,9 @@ export const setDisabled = (id: string, disabled: boolean) =>
     return { ...u, disabled };
   });
 
-export const setPasswordHash = (id: string, passwordHash: string) => mutate(id, (u) => ({ ...u, passwordHash }));
+/** Changing a password also voids every existing session for that account. */
+export const setPasswordHash = (id: string, passwordHash: string) =>
+  mutate(id, (u) => ({ ...u, passwordHash, sessionsValidFrom: new Date().toISOString() }));
 
 export const deleteUser = (id: string) =>
   mutate(id, (u, all) => {
