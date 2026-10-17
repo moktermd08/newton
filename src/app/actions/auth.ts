@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { safeNext } from "@/lib/auth";
 import { verifyPassword } from "@/lib/password";
 import { SESSION_COOKIE, SESSION_TTL_SECONDS, createSessionToken } from "@/lib/session";
+import { getUserByEmail, hasUsers, recordLogin } from "@/lib/users";
 
 export type LoginState = { error?: string; email?: string } | undefined;
 
@@ -30,20 +31,20 @@ export async function login(_prev: LoginState, formData: FormData): Promise<Logi
   const now = Date.now();
   if (recent(ip, now).length >= MAX_FAILURES) return { error: "Too many attempts. Try again in 15 minutes.", email };
 
-  const adminEmail = process.env.ADMIN_EMAIL?.trim().toLowerCase();
-  const hash = process.env.ADMIN_PASSWORD_HASH;
-  if (!adminEmail || !hash) return { error: "Sign-in is not set up. Run `npm run auth:setup`.", email };
+  if (!(await hasUsers())) return { error: "Sign-in is not set up. Run `npm run auth:setup`.", email };
 
-  // Always verify the password, even for a wrong email, so timing does not reveal which was wrong.
-  const passwordOk = await verifyPassword(password, email === adminEmail ? hash : undefined);
-  if (!passwordOk) {
+  // Always verify the password, even for an unknown or disabled account, so timing does not reveal which was wrong.
+  const user = await getUserByEmail(email);
+  const passwordOk = await verifyPassword(password, user && !user.disabled ? user.passwordHash : undefined);
+  if (!passwordOk || !user) {
     failures.set(ip, [...recent(ip, now), now]);
     return { error: "Incorrect email or password.", email };
   }
 
   failures.delete(ip);
   const jar = await cookies();
-  jar.set(SESSION_COOKIE, createSessionToken(adminEmail), {
+  await recordLogin(user.id);
+  jar.set(SESSION_COOKIE, createSessionToken(user.id), {
     httpOnly: true,
     sameSite: "lax",
     secure: process.env.NODE_ENV === "production",

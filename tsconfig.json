@@ -32,7 +32,8 @@
       "@engine": [
         "./engine/src/index.js"
       ]
-    }
+    },
+    "allowImportingTsExtensions": true
   },
   "include": [
     "next-env.d.ts",
