@@ -1,0 +1,62 @@
+/*
+ * @gg/ui element defaults, for GG apps without a CSS framework. An app on
+ * Tailwind skips this file: its preflight and utilities already style bare
+ * elements, and these rules would fight them.
+ */
+@layer base {
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: var(--gg-font-size)/1.5 var(--sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  pre, code { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+  h1 { font-size: 20px; margin: 0 0 2px; font-weight: 700; letter-spacing: -.01em; }
+  h2 { font-size: 12px; margin: 0; color: var(--muted); display: flex; gap: 7px; align-items: center;
+       text-transform: uppercase; letter-spacing: .07em; font-weight: 600; }
+  main > h2 { margin: 24px 0 10px; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  th { text-align: left; color: var(--muted); font-weight: 600; padding: 7px 10px; font-size: 11px;
+       text-transform: uppercase; letter-spacing: .05em; border-bottom: 1px solid var(--border); white-space: nowrap; }
+  td { padding: 8px 10px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: var(--surface-2); }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  td.clip { max-width: 180px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  /* A bare table on a page reads as a card too. */
+  main > table { border-collapse: separate; border-spacing: 0; background: var(--surface); border: 1px solid var(--border);
+                 border-radius: var(--gg-radius); overflow: hidden; box-shadow: var(--shadow); }
+  /* A table ignores overflow, so on a phone it becomes a block that scrolls inside itself. */
+  @media (max-width: 760px) {
+    main > table { display: block; overflow-x: auto; }
+  }
+
+  button {
+    font: inherit; background: var(--surface-2); color: var(--text); display: inline-flex; align-items: center; gap: 6px;
+    border: 1px solid var(--border); border-radius: var(--gg-radius-sm); padding: 5px 11px; cursor: pointer;
+  }
+  button:hover { border-color: var(--accent); }
+  button.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-fg); }
+  button.primary:hover { filter: brightness(1.08); }
+  button.danger { border-color: var(--danger); color: var(--danger); }
+  button:disabled { opacity: .5; cursor: not-allowed; }
+
+  input, select, textarea {
+    font: inherit; background: var(--surface); color: var(--text);
+    border: 1px solid var(--border); border-radius: var(--gg-radius-sm); padding: 5px 9px;
+  }
+  input:focus, select:focus, textarea:focus, button:focus-visible, a:focus-visible {
+    outline: 2px solid var(--accent); outline-offset: 1px;
+  }
+
+  pre { background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--gg-radius-sm);
+        padding: 10px 12px; overflow-x: auto; font-size: 11.5px; margin: 6px 0; white-space: pre-wrap; word-break: break-word; }
+}

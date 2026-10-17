@@ -1,0 +1,3813 @@
+{
+ "zones": [
+  "Discover",
+  "Define",
+  "Design",
+  "Build",
+  "Release",
+  "Operate",
+  "Retire"
+ ],
+ "pillars": [
+  "Strategy",
+  "Experience",
+  "Code",
+  "Database",
+  "Content",
+  "Hardware / Infrastructure",
+  "Pattern (AI / LLM)",
+  "Testing",
+  "Deployment / DevOps",
+  "Security",
+  "Actors / Team",
+  "Support / Observability",
+  "Compliance",
+  "Scaling",
+  "Maintenance",
+  "Sales",
+  "Marketing",
+  "Documentation",
+  "Integration",
+  "Architecture",
+  "Change Management",
+  "FinOps",
+  "AI Governance",
+  "MLOps",
+  "Customer Data Lifecycle",
+  "Supply Chain / SBOM",
+  "Customer Onboarding",
+  "Sustainability",
+  "Vendor / Procurement",
+  "Risk Management",
+  "Continuous Documentation"
+ ],
+ "lines": [
+  {
+   "id": "doc",
+   "name": "Documentation",
+   "row": 0
+  },
+  {
+   "id": "str",
+   "name": "Strategy & Product",
+   "row": 1
+  },
+  {
+   "id": "ux",
+   "name": "Experience & Design",
+   "row": 2
+  },
+  {
+   "id": "arc",
+   "name": "Architecture & Integration",
+   "row": 3
+  },
+  {
+   "id": "dat",
+   "name": "Data & AI",
+   "row": 4
+  },
+  {
+   "id": "eng",
+   "name": "Engineering",
+   "row": 5
+  },
+  {
+   "id": "qa",
+   "name": "Quality",
+   "row": 6
+  },
+  {
+   "id": "sec",
+   "name": "Security & Compliance",
+   "row": 7
+  },
+  {
+   "id": "ops",
+   "name": "Delivery & Operations",
+   "row": 8
+  },
+  {
+   "id": "gov",
+   "name": "Governance & Finance",
+   "row": 9
+  }
+ ],
+ "stations": [
+  {
+   "id": "kb",
+   "line": "doc",
+   "x": 0,
+   "name": "Knowledge Base",
+   "scale": "S",
+   "ai": false,
+   "pillar": 31,
+   "owner": "Technical Writer",
+   "inputs": [
+    "Existing documents",
+    "Choice of wiki or repo"
+   ],
+   "outputs": [
+    "Single source of truth",
+    "Ownership and access rules"
+   ],
+   "zone": 1
+  },
+  {
+   "id": "docstd",
+   "line": "doc",
+   "x": 1,
+   "name": "Doc Standards",
+   "scale": "S",
+   "ai": false,
+   "pillar": 18,
+   "owner": "Technical Writer",
+   "inputs": [
+    "Organisation style guide",
+    "Record-keeping rules"
+   ],
+   "outputs": [
+    "Templates",
+    "Named owner per artefact"
+   ],
+   "zone": 1
+  },
+  {
+   "id": "gloss",
+   "line": "doc",
+   "x": 6,
+   "name": "Glossary",
+   "scale": "S",
+   "ai": false,
+   "pillar": 18,
+   "owner": "Business Analyst",
+   "inputs": [
+    "Stakeholder interviews",
+    "Domain policy"
+   ],
+   "outputs": [
+    "Shared domain terms",
+    "One meaning per word"
+   ],
+   "zone": 2
+  },
+  {
+   "id": "adr",
+   "line": "doc",
+   "x": 12,
+   "name": "ADR Log",
+   "scale": "M",
+   "ai": false,
+   "pillar": 18,
+   "owner": "Solution Architect",
+   "inputs": [
+    "Design options",
+    "Trade-off analysis"
+   ],
+   "outputs": [
+    "Architecture decision records",
+    "Rationale for auditors"
+   ],
+   "zone": 3
+  },
+  {
+   "id": "apidocs",
+   "line": "doc",
+   "x": 17,
+   "name": "API Docs",
+   "scale": "S",
+   "ai": false,
+   "pillar": 18,
+   "owner": "Developer",
+   "inputs": [
+    "API contracts",
+    "Auth model"
+   ],
+   "outputs": [
+    "Reference documentation",
+    "Example requests"
+   ],
+   "zone": 3
+  },
+  {
+   "id": "readme",
+   "line": "doc",
+   "x": 22,
+   "name": "READMEs",
+   "scale": "S",
+   "ai": false,
+   "pillar": 18,
+   "owner": "Developer",
+   "inputs": [
+    "Code",
+    "Setup steps"
+   ],
+   "outputs": [
+    "Local run guide",
+    "Onboarding notes for developers"
+   ],
+   "zone": 4
+  },
+  {
+   "id": "relnotes",
+   "line": "doc",
+   "x": 26,
+   "name": "Release Notes",
+   "scale": "S",
+   "ai": false,
+   "pillar": 18,
+   "owner": "Product Owner",
+   "inputs": [
+    "Merged changes",
+    "Known issues"
+   ],
+   "outputs": [
+    "Change summary for users and support"
+   ],
+   "zone": 5
+  },
+  {
+   "id": "runbooks",
+   "line": "doc",
+   "x": 30,
+   "name": "Runbooks",
+   "scale": "S",
+   "ai": false,
+   "pillar": 18,
+   "owner": "Site Reliability Engineer",
+   "inputs": [
+    "Architecture",
+    "Alert definitions",
+    "Recovery steps"
+   ],
+   "outputs": [
+    "Step-by-step operating guides"
+   ],
+   "zone": 5
+  },
+  {
+   "id": "userguide",
+   "line": "doc",
+   "x": 34,
+   "name": "User Guides",
+   "scale": "S",
+   "ai": false,
+   "pillar": 5,
+   "owner": "Content Designer",
+   "inputs": [
+    "Live features",
+    "Support tickets"
+   ],
+   "outputs": [
+    "Help content",
+    "FAQs"
+   ],
+   "zone": 6
+  },
+  {
+   "id": "archive",
+   "line": "doc",
+   "x": 38,
+   "name": "Records Archive",
+   "scale": "M",
+   "ai": false,
+   "pillar": 31,
+   "owner": "Technical Writer",
+   "inputs": [
+    "All project records",
+    "Retention schedule"
+   ],
+   "outputs": [
+    "Archived records",
+    "Audit trail"
+   ],
+   "zone": 7
+  },
+  {
+   "id": "idea",
+   "line": "str",
+   "x": 0,
+   "name": "Idea Intake",
+   "scale": "S",
+   "ai": false,
+   "pillar": 1,
+   "owner": "Sponsor",
+   "inputs": [
+    "Problem statement",
+    "Opportunity or mandate"
+   ],
+   "outputs": [
+    "Logged idea",
+    "Initial owner"
+   ],
+   "zone": 1
+  },
+  {
+   "id": "goals",
+   "line": "str",
+   "x": 1,
+   "name": "Business Goals",
+   "scale": "S",
+   "ai": false,
+   "pillar": 1,
+   "owner": "Sponsor",
+   "inputs": [
+    "Logged idea",
+    "Organisation strategy"
+   ],
+   "outputs": [
+    "Goals",
+    "KPIs and targets"
+   ],
+   "zone": 1
+  },
+  {
+   "id": "market",
+   "line": "str",
+   "x": 2,
+   "name": "Market Research",
+   "scale": "S",
+   "ai": false,
+   "pillar": 1,
+   "owner": "Business Analyst",
+   "inputs": [
+    "Goals",
+    "Competitor data",
+    "Customer interviews"
+   ],
+   "outputs": [
+    "Market size",
+    "Competitor gaps"
+   ],
+   "zone": 1
+  },
+  {
+   "id": "stake",
+   "line": "str",
+   "x": 4,
+   "name": "Stakeholder Map",
+   "scale": "S",
+   "ai": false,
+   "pillar": 1,
+   "owner": "Business Analyst",
+   "inputs": [
+    "Goals",
+    "Organisation chart"
+   ],
+   "outputs": [
+    "Stakeholder register",
+    "RACI"
+   ],
+   "zone": 1
+  },
+  {
+   "id": "feas",
+   "line": "str",
+   "x": 5,
+   "name": "Feasibility",
+   "scale": "S",
+   "ai": false,
+   "pillar": 1,
+   "owner": "Business Analyst",
+   "inputs": [
+    "Goals",
+    "Tech landscape",
+    "Constraints"
+   ],
+   "outputs": [
+    "Feasible options",
+    "Showstoppers"
+   ],
+   "zone": 1
+  },
+  {
+   "id": "bizcase",
+   "line": "str",
+   "x": 6,
+   "name": "Business Case",
+   "scale": "M",
+   "ai": false,
+   "pillar": 1,
+   "owner": "Product Owner",
+   "inputs": [
+    "Feasible options",
+    "Cost estimate",
+    "Expected benefits"
+   ],
+   "outputs": [
+    "Approved case",
+    "ROI and payback"
+   ],
+   "zone": 2
+  },
+  {
+   "id": "fund",
+   "line": "str",
+   "x": 7,
+   "name": "Funding Approval",
+   "scale": "M",
+   "ai": false,
+   "pillar": 1,
+   "owner": "Sponsor",
+   "inputs": [
+    "Business case"
+   ],
+   "outputs": [
+    "Budget release",
+    "Conditions"
+   ],
+   "zone": 2
+  },
+  {
+   "id": "spend",
+   "line": "str",
+   "x": 8,
+   "name": "Spend Control",
+   "scale": "P",
+   "ai": false,
+   "pillar": 1,
+   "owner": "Sponsor",
+   "inputs": [
+    "Business case",
+    "Digital and technology spend rules"
+   ],
+   "outputs": [
+    "Spend approval",
+    "Conditions on delivery"
+   ],
+   "zone": 2
+  },
+  {
+   "id": "roadmap",
+   "line": "str",
+   "x": 10,
+   "name": "Product Roadmap",
+   "scale": "S",
+   "ai": false,
+   "pillar": 1,
+   "owner": "Product Owner",
+   "inputs": [
+    "Goals",
+    "Requirements"
+   ],
+   "outputs": [
+    "Now / Next / Later roadmap",
+    "Release themes"
+   ],
+   "zone": 2
+  },
+  {
+   "id": "backlog",
+   "line": "str",
+   "x": 11,
+   "name": "Backlog",
+   "scale": "S",
+   "ai": false,
+   "pillar": 1,
+   "owner": "Product Owner",
+   "inputs": [
+    "Roadmap",
+    "User stories"
+   ],
+   "outputs": [
+    "Prioritised backlog"
+   ],
+   "zone": 2
+  },
+  {
+   "id": "pricing",
+   "line": "str",
+   "x": 13,
+   "name": "Pricing Model",
+   "scale": "S",
+   "ai": false,
+   "pillar": 16,
+   "owner": "Product Owner",
+   "inputs": [
+    "Market research",
+    "Cost model"
+   ],
+   "outputs": [
+    "Price plans",
+    "Billing rules"
+   ],
+   "zone": 3
+  },
+  {
+   "id": "gtm",
+   "line": "str",
+   "x": 17,
+   "name": "Go-to-Market Plan",
+   "scale": "S",
+   "ai": false,
+   "pillar": 17,
+   "owner": "Marketing Lead",
+   "inputs": [
+    "Pricing",
+    "Personas",
+    "Roadmap"
+   ],
+   "outputs": [
+    "Channels",
+    "Messaging",
+    "Launch timeline"
+   ],
+   "zone": 3
+  },
+  {
+   "id": "beta",
+   "line": "str",
+   "x": 21,
+   "name": "Beta Users",
+   "scale": "M",
+   "ai": false,
+   "pillar": 17,
+   "owner": "Product Owner",
+   "inputs": [
+    "Working build",
+    "Target segment"
+   ],
+   "outputs": [
+    "Early feedback",
+    "Case-study candidates"
+   ],
+   "zone": 4
+  },
+  {
+   "id": "launch",
+   "line": "str",
+   "x": 26,
+   "name": "Launch Comms",
+   "scale": "S",
+   "ai": false,
+   "pillar": 17,
+   "owner": "Marketing Lead",
+   "inputs": [
+    "Release notes",
+    "Go-to-market plan"
+   ],
+   "outputs": [
+    "Announcements",
+    "Website and app store content"
+   ],
+   "zone": 5
+  },
+  {
+   "id": "salesen",
+   "line": "str",
+   "x": 29,
+   "name": "Sales Enablement",
+   "scale": "M",
+   "ai": false,
+   "pillar": 16,
+   "owner": "Sales Lead",
+   "inputs": [
+    "Pricing",
+    "Demo build",
+    "Release notes"
+   ],
+   "outputs": [
+    "Sales deck",
+    "Demo script",
+    "Objection handling"
+   ],
+   "zone": 5
+  },
+  {
+   "id": "onboard",
+   "line": "str",
+   "x": 30,
+   "name": "Customer Onboarding",
+   "scale": "S",
+   "ai": false,
+   "pillar": 27,
+   "owner": "Customer Success",
+   "inputs": [
+    "Live service",
+    "User guides"
+   ],
+   "outputs": [
+    "Activated customers",
+    "Onboarding metrics"
+   ],
+   "zone": 5
+  },
+  {
+   "id": "feedback",
+   "line": "str",
+   "x": 33,
+   "name": "Customer Feedback",
+   "scale": "S",
+   "ai": false,
+   "pillar": 27,
+   "owner": "Product Owner",
+   "inputs": [
+    "Support tickets",
+    "Surveys",
+    "Analytics"
+   ],
+   "outputs": [
+    "Insight themes",
+    "New backlog items"
+   ],
+   "zone": 6
+  },
+  {
+   "id": "kpi",
+   "line": "str",
+   "x": 34,
+   "name": "KPI Review",
+   "scale": "S",
+   "ai": false,
+   "pillar": 1,
+   "owner": "Product Owner",
+   "inputs": [
+    "Live metrics",
+    "Business goals"
+   ],
+   "outputs": [
+    "KPI scorecard",
+    "Course corrections"
+   ],
+   "zone": 6
+  },
+  {
+   "id": "benefits",
+   "line": "str",
+   "x": 37,
+   "name": "Benefits Realisation",
+   "scale": "M",
+   "ai": false,
+   "pillar": 1,
+   "owner": "Sponsor",
+   "inputs": [
+    "Business case",
+    "KPI scorecard"
+   ],
+   "outputs": [
+    "Realised versus planned benefits"
+   ],
+   "zone": 6
+  },
+  {
+   "id": "sunset",
+   "line": "str",
+   "x": 38,
+   "name": "Sunset Decision",
+   "scale": "S",
+   "ai": false,
+   "pillar": 1,
+   "owner": "Sponsor",
+   "inputs": [
+    "Benefits",
+    "Running cost",
+    "Replacement options"
+   ],
+   "outputs": [
+    "Retire, replace or keep decision"
+   ],
+   "zone": 7
+  },
+  {
+   "id": "research",
+   "line": "ux",
+   "x": 1,
+   "name": "User Research",
+   "scale": "S",
+   "ai": false,
+   "pillar": 2,
+   "owner": "User Researcher",
+   "inputs": [
+    "Business goals",
+    "Access to users"
+   ],
+   "outputs": [
+    "Research findings",
+    "User needs"
+   ],
+   "zone": 1
+  },
+  {
+   "id": "personas",
+   "line": "ux",
+   "x": 2,
+   "name": "Personas",
+   "scale": "S",
+   "ai": false,
+   "pillar": 2,
+   "owner": "User Researcher",
+   "inputs": [
+    "Research findings"
+   ],
+   "outputs": [
+    "Personas",
+    "Accessibility needs"
+   ],
+   "zone": 1
+  },
+  {
+   "id": "journeys",
+   "line": "ux",
+   "x": 4,
+   "name": "Journey Maps",
+   "scale": "S",
+   "ai": false,
+   "pillar": 2,
+   "owner": "Service Designer",
+   "inputs": [
+    "User needs",
+    "Current process"
+   ],
+   "outputs": [
+    "As-is and to-be journeys",
+    "Pain points"
+   ],
+   "zone": 1
+  },
+  {
+   "id": "blueprint",
+   "line": "ux",
+   "x": 6,
+   "name": "Service Blueprint",
+   "scale": "M",
+   "ai": false,
+   "pillar": 2,
+   "owner": "Service Designer",
+   "inputs": [
+    "Journeys",
+    "Back-office processes"
+   ],
+   "outputs": [
+    "Front-to-back view of the service"
+   ],
+   "zone": 2
+  },
+  {
+   "id": "content",
+   "line": "ux",
+   "x": 7,
+   "name": "Content Strategy",
+   "scale": "S",
+   "ai": false,
+   "pillar": 5,
+   "owner": "Content Designer",
+   "inputs": [
+    "User needs",
+    "Brand voice"
+   ],
+   "outputs": [
+    "Content plan",
+    "Tone of voice"
+   ],
+   "zone": 2
+  },
+  {
+   "id": "ia",
+   "line": "ux",
+   "x": 8,
+   "name": "Info Architecture",
+   "scale": "S",
+   "ai": false,
+   "pillar": 2,
+   "owner": "Interaction Designer",
+   "inputs": [
+    "Journeys",
+    "Content plan"
+   ],
+   "outputs": [
+    "Site map",
+    "Navigation model"
+   ],
+   "zone": 2
+  },
+  {
+   "id": "wire",
+   "line": "ux",
+   "x": 10,
+   "name": "Wireframes",
+   "scale": "S",
+   "ai": false,
+   "pillar": 2,
+   "owner": "Interaction Designer",
+   "inputs": [
+    "Requirements",
+    "Info architecture"
+   ],
+   "outputs": [
+    "Low-fidelity screens"
+   ],
+   "zone": 2
+  },
+  {
+   "id": "proto",
+   "line": "ux",
+   "x": 11,
+   "name": "Prototype",
+   "scale": "S",
+   "ai": false,
+   "pillar": 2,
+   "owner": "Interaction Designer",
+   "inputs": [
+    "Wireframes"
+   ],
+   "outputs": [
+    "Clickable prototype"
+   ],
+   "zone": 2
+  },
+  {
+   "id": "usability",
+   "line": "ux",
+   "x": 13,
+   "name": "Usability Testing",
+   "scale": "S",
+   "ai": false,
+   "pillar": 2,
+   "owner": "User Researcher",
+   "inputs": [
+    "Prototype",
+    "Test participants"
+   ],
+   "outputs": [
+    "Findings",
+    "Design changes"
+   ],
+   "zone": 3
+  },
+  {
+   "id": "dsys",
+   "line": "ux",
+   "x": 14,
+   "name": "Design System",
+   "scale": "M",
+   "ai": false,
+   "pillar": 2,
+   "owner": "Interaction Designer",
+   "inputs": [
+    "Brand",
+    "Components in use"
+   ],
+   "outputs": [
+    "Reusable components",
+    "Design tokens"
+   ],
+   "zone": 3
+  },
+  {
+   "id": "hifi",
+   "line": "ux",
+   "x": 16,
+   "name": "Hi-fi UI",
+   "scale": "S",
+   "ai": false,
+   "pillar": 2,
+   "owner": "Interaction Designer",
+   "inputs": [
+    "Tested prototype",
+    "Design system"
+   ],
+   "outputs": [
+    "Final screens",
+    "Build specs"
+   ],
+   "zone": 3
+  },
+  {
+   "id": "a11yrev",
+   "line": "ux",
+   "x": 21,
+   "name": "Accessibility Review",
+   "scale": "S",
+   "ai": false,
+   "pillar": 2,
+   "owner": "Accessibility Specialist",
+   "inputs": [
+    "Built screens",
+    "WCAG 2.2 AA"
+   ],
+   "outputs": [
+    "Issues list",
+    "Fixes"
+   ],
+   "zone": 4
+  },
+  {
+   "id": "uxsign",
+   "line": "ux",
+   "x": 25,
+   "name": "UX Sign-off",
+   "scale": "S",
+   "ai": false,
+   "pillar": 2,
+   "owner": "Interaction Designer",
+   "inputs": [
+    "Built feature compared with design"
+   ],
+   "outputs": [
+    "Approved user experience"
+   ],
+   "zone": 4
+  },
+  {
+   "id": "a11ystmt",
+   "line": "ux",
+   "x": 29,
+   "name": "Accessibility Statement",
+   "scale": "P",
+   "ai": false,
+   "pillar": 5,
+   "owner": "Content Designer",
+   "inputs": [
+    "Audit results",
+    "Known issues"
+   ],
+   "outputs": [
+    "Published accessibility statement"
+   ],
+   "zone": 5
+  },
+  {
+   "id": "analytics",
+   "line": "ux",
+   "x": 33,
+   "name": "Analytics Insight",
+   "scale": "S",
+   "ai": false,
+   "pillar": 2,
+   "owner": "Performance Analyst",
+   "inputs": [
+    "Live usage data"
+   ],
+   "outputs": [
+    "Drop-off points",
+    "Experiment ideas"
+   ],
+   "zone": 6
+  },
+  {
+   "id": "uxiter",
+   "line": "ux",
+   "x": 34,
+   "name": "UX Iteration",
+   "scale": "S",
+   "ai": false,
+   "pillar": 2,
+   "owner": "Interaction Designer",
+   "inputs": [
+    "Analytics",
+    "Customer feedback"
+   ],
+   "outputs": [
+    "Design improvements"
+   ],
+   "zone": 6
+  },
+  {
+   "id": "techland",
+   "line": "arc",
+   "x": 5,
+   "name": "Tech Landscape",
+   "scale": "S",
+   "ai": false,
+   "pillar": 20,
+   "owner": "Solution Architect",
+   "inputs": [
+    "Existing systems",
+    "Market tools"
+   ],
+   "outputs": [
+    "Options shortlist",
+    "Technical constraints"
+   ],
+   "zone": 1
+  },
+  {
+   "id": "buildbuy",
+   "line": "arc",
+   "x": 6,
+   "name": "Build vs Buy",
+   "scale": "S",
+   "ai": false,
+   "pillar": 20,
+   "owner": "Solution Architect",
+   "inputs": [
+    "Options",
+    "Cost",
+    "Timeline"
+   ],
+   "outputs": [
+    "Build, buy or configure decision"
+   ],
+   "zone": 2
+  },
+  {
+   "id": "nfr",
+   "line": "arc",
+   "x": 7,
+   "name": "NFRs",
+   "scale": "S",
+   "ai": false,
+   "pillar": 20,
+   "owner": "Solution Architect",
+   "inputs": [
+    "Goals",
+    "Regulation",
+    "Expected load"
+   ],
+   "outputs": [
+    "Performance, availability and security targets"
+   ],
+   "zone": 2
+  },
+  {
+   "id": "context",
+   "line": "arc",
+   "x": 8,
+   "name": "Context Diagram",
+   "scale": "S",
+   "ai": false,
+   "pillar": 20,
+   "owner": "Solution Architect",
+   "inputs": [
+    "Stakeholders",
+    "Existing systems"
+   ],
+   "outputs": [
+    "System boundary",
+    "External actors"
+   ],
+   "zone": 2
+  },
+  {
+   "id": "solarch",
+   "line": "arc",
+   "x": 10,
+   "name": "Solution Architecture",
+   "scale": "S",
+   "ai": false,
+   "pillar": 20,
+   "owner": "Solution Architect",
+   "inputs": [
+    "Requirements",
+    "NFRs"
+   ],
+   "outputs": [
+    "Component design",
+    "Deployment view"
+   ],
+   "zone": 2
+  },
+  {
+   "id": "intmap",
+   "line": "arc",
+   "x": 11,
+   "name": "Integration Map",
+   "scale": "S",
+   "ai": false,
+   "pillar": 19,
+   "owner": "Solution Architect",
+   "inputs": [
+    "Context diagram",
+    "Partner systems"
+   ],
+   "outputs": [
+    "Interface list",
+    "Data flows"
+   ],
+   "zone": 2
+  },
+  {
+   "id": "apicon",
+   "line": "arc",
+   "x": 12,
+   "name": "API Contracts",
+   "scale": "S",
+   "ai": false,
+   "pillar": 19,
+   "owner": "Solution Architect",
+   "inputs": [
+    "Integration map",
+    "Data model"
+   ],
+   "outputs": [
+    "OpenAPI specs",
+    "Event schemas"
+   ],
+   "zone": 3
+  },
+  {
+   "id": "scaling",
+   "line": "arc",
+   "x": 13,
+   "name": "Scaling Model",
+   "scale": "M",
+   "ai": false,
+   "pillar": 14,
+   "owner": "Solution Architect",
+   "inputs": [
+    "NFRs",
+    "Load forecast"
+   ],
+   "outputs": [
+    "Scale strategy",
+    "Caching plan"
+   ],
+   "zone": 3
+  },
+  {
+   "id": "stack",
+   "line": "arc",
+   "x": 14,
+   "name": "Tech Stack",
+   "scale": "S",
+   "ai": false,
+   "pillar": 20,
+   "owner": "Tech Lead",
+   "inputs": [
+    "Solution architecture",
+    "Team skills"
+   ],
+   "outputs": [
+    "Languages, frameworks and services"
+   ],
+   "zone": 3
+  },
+  {
+   "id": "spike",
+   "line": "arc",
+   "x": 16,
+   "name": "Spike / PoC",
+   "scale": "S",
+   "ai": false,
+   "pillar": 20,
+   "owner": "Tech Lead",
+   "inputs": [
+    "Riskiest assumptions"
+   ],
+   "outputs": [
+    "Proven approach",
+    "Discarded options"
+   ],
+   "zone": 3
+  },
+  {
+   "id": "captest",
+   "line": "arc",
+   "x": 26,
+   "name": "Capacity Check",
+   "scale": "M",
+   "ai": false,
+   "pillar": 14,
+   "owner": "Solution Architect",
+   "inputs": [
+    "Scaling model",
+    "Performance results"
+   ],
+   "outputs": [
+    "Headroom figures",
+    "Scale triggers"
+   ],
+   "zone": 5
+  },
+  {
+   "id": "archrev",
+   "line": "arc",
+   "x": 30,
+   "name": "Architecture Review",
+   "scale": "L",
+   "ai": false,
+   "pillar": 20,
+   "owner": "Enterprise Architect",
+   "inputs": [
+    "As-built design"
+   ],
+   "outputs": [
+    "Conformance findings"
+   ],
+   "zone": 5
+  },
+  {
+   "id": "techdebt",
+   "line": "arc",
+   "x": 33,
+   "name": "Tech Debt Register",
+   "scale": "S",
+   "ai": false,
+   "pillar": 15,
+   "owner": "Tech Lead",
+   "inputs": [
+    "Code review notes",
+    "Incidents"
+   ],
+   "outputs": [
+    "Ranked debt items"
+   ],
+   "zone": 6
+  },
+  {
+   "id": "replat",
+   "line": "arc",
+   "x": 34,
+   "name": "Re-platform Plan",
+   "scale": "L",
+   "ai": false,
+   "pillar": 20,
+   "owner": "Solution Architect",
+   "inputs": [
+    "Tech debt",
+    "End-of-life dates"
+   ],
+   "outputs": [
+    "Modernisation plan"
+   ],
+   "zone": 6
+  },
+  {
+   "id": "target",
+   "line": "arc",
+   "x": 37,
+   "name": "Target Architecture",
+   "scale": "L",
+   "ai": false,
+   "pillar": 20,
+   "owner": "Enterprise Architect",
+   "inputs": [
+    "Strategy",
+    "Re-platform plan"
+   ],
+   "outputs": [
+    "Future-state design"
+   ],
+   "zone": 6
+  },
+  {
+   "id": "datasrc",
+   "line": "dat",
+   "x": 4,
+   "name": "Data Sources",
+   "scale": "S",
+   "ai": false,
+   "pillar": 4,
+   "owner": "Data Architect",
+   "inputs": [
+    "Business processes",
+    "Existing systems"
+   ],
+   "outputs": [
+    "Source inventory",
+    "Data owners"
+   ],
+   "zone": 1
+  },
+  {
+   "id": "dclass",
+   "line": "dat",
+   "x": 6,
+   "name": "Data Classification",
+   "scale": "S",
+   "ai": false,
+   "pillar": 25,
+   "owner": "Data Architect",
+   "inputs": [
+    "Source inventory"
+   ],
+   "outputs": [
+    "Sensitivity labels",
+    "Handling rules"
+   ],
+   "zone": 2
+  },
+  {
+   "id": "dpia",
+   "line": "dat",
+   "x": 7,
+   "name": "DPIA",
+   "scale": "M",
+   "ai": false,
+   "pillar": 25,
+   "owner": "Data Protection Officer",
+   "inputs": [
+    "Data classification",
+    "Processing purpose"
+   ],
+   "outputs": [
+    "Privacy risks",
+    "Mitigations"
+   ],
+   "zone": 2
+  },
+  {
+   "id": "dmodel",
+   "line": "dat",
+   "x": 8,
+   "name": "Data Model",
+   "scale": "S",
+   "ai": false,
+   "pillar": 4,
+   "owner": "Data Architect",
+   "inputs": [
+    "Requirements",
+    "Glossary"
+   ],
+   "outputs": [
+    "Conceptual and logical model"
+   ],
+   "zone": 2
+  },
+  {
+   "id": "schema",
+   "line": "dat",
+   "x": 10,
+   "name": "Schema Design",
+   "scale": "S",
+   "ai": false,
+   "pillar": 4,
+   "owner": "Data Engineer",
+   "inputs": [
+    "Data model",
+    "NFRs"
+   ],
+   "outputs": [
+    "Physical schema",
+    "Indexes"
+   ],
+   "zone": 2
+  },
+  {
+   "id": "aiuse",
+   "line": "dat",
+   "x": 11,
+   "name": "AI Use Case",
+   "scale": "S",
+   "ai": true,
+   "pillar": 7,
+   "owner": "Product Owner",
+   "inputs": [
+    "Business goals",
+    "Data available"
+   ],
+   "outputs": [
+    "AI opportunity",
+    "Success measure"
+   ],
+   "zone": 2
+  },
+  {
+   "id": "modelsel",
+   "line": "dat",
+   "x": 12,
+   "name": "Model Selection",
+   "scale": "S",
+   "ai": true,
+   "pillar": 24,
+   "owner": "ML Engineer",
+   "inputs": [
+    "AI use case",
+    "Cost",
+    "Privacy limits"
+   ],
+   "outputs": [
+    "Chosen model",
+    "Hosting route"
+   ],
+   "zone": 3
+  },
+  {
+   "id": "pipelines",
+   "line": "dat",
+   "x": 13,
+   "name": "Data Pipelines",
+   "scale": "M",
+   "ai": false,
+   "pillar": 4,
+   "owner": "Data Engineer",
+   "inputs": [
+    "Source inventory",
+    "Schema"
+   ],
+   "outputs": [
+    "ETL and ELT jobs"
+   ],
+   "zone": 3
+  },
+  {
+   "id": "migplan",
+   "line": "dat",
+   "x": 14,
+   "name": "Migration Plan",
+   "scale": "S",
+   "ai": false,
+   "pillar": 4,
+   "owner": "Data Engineer",
+   "inputs": [
+    "Legacy data",
+    "Target schema"
+   ],
+   "outputs": [
+    "Field mapping",
+    "Cut-over approach"
+   ],
+   "zone": 3
+  },
+  {
+   "id": "seed",
+   "line": "dat",
+   "x": 16,
+   "name": "Seed & Test Data",
+   "scale": "S",
+   "ai": false,
+   "pillar": 4,
+   "owner": "Data Engineer",
+   "inputs": [
+    "Schema",
+    "Privacy rules"
+   ],
+   "outputs": [
+    "Synthetic datasets"
+   ],
+   "zone": 3
+  },
+  {
+   "id": "evalset",
+   "line": "dat",
+   "x": 17,
+   "name": "Prompt & Eval Set",
+   "scale": "S",
+   "ai": true,
+   "pillar": 7,
+   "owner": "ML Engineer",
+   "inputs": [
+    "AI use case",
+    "Sample data"
+   ],
+   "outputs": [
+    "Prompts",
+    "Evaluation set"
+   ],
+   "zone": 3
+  },
+  {
+   "id": "training",
+   "line": "dat",
+   "x": 20,
+   "name": "Model Training",
+   "scale": "M",
+   "ai": true,
+   "pillar": 24,
+   "owner": "ML Engineer",
+   "inputs": [
+    "Training data",
+    "Evaluation set"
+   ],
+   "outputs": [
+    "Trained or tuned model",
+    "Metrics"
+   ],
+   "zone": 4
+  },
+  {
+   "id": "dmig",
+   "line": "dat",
+   "x": 22,
+   "name": "Data Migration",
+   "scale": "S",
+   "ai": false,
+   "pillar": 4,
+   "owner": "Data Engineer",
+   "inputs": [
+    "Migration plan",
+    "Production access"
+   ],
+   "outputs": [
+    "Migrated and reconciled data"
+   ],
+   "zone": 4
+  },
+  {
+   "id": "modelval",
+   "line": "dat",
+   "x": 23,
+   "name": "Model Validation",
+   "scale": "S",
+   "ai": true,
+   "pillar": 23,
+   "owner": "ML Engineer",
+   "inputs": [
+    "Model",
+    "Evaluation set",
+    "Bias checks"
+   ],
+   "outputs": [
+    "Accuracy and fairness results"
+   ],
+   "zone": 4
+  },
+  {
+   "id": "backup",
+   "line": "dat",
+   "x": 26,
+   "name": "Backup & Restore",
+   "scale": "S",
+   "ai": false,
+   "pillar": 4,
+   "owner": "Data Engineer",
+   "inputs": [
+    "Schema",
+    "Recovery targets (RPO and RTO)"
+   ],
+   "outputs": [
+    "Backup jobs",
+    "Tested restore"
+   ],
+   "zone": 5
+  },
+  {
+   "id": "dqmon",
+   "line": "dat",
+   "x": 33,
+   "name": "Data Quality Monitor",
+   "scale": "M",
+   "ai": false,
+   "pillar": 25,
+   "owner": "Data Engineer",
+   "inputs": [
+    "Live data"
+   ],
+   "outputs": [
+    "Quality alerts",
+    "Data health score"
+   ],
+   "zone": 6
+  },
+  {
+   "id": "drift",
+   "line": "dat",
+   "x": 34,
+   "name": "Model Drift",
+   "scale": "S",
+   "ai": true,
+   "pillar": 24,
+   "owner": "ML Engineer",
+   "inputs": [
+    "Live predictions"
+   ],
+   "outputs": [
+    "Drift alerts",
+    "Retraining trigger"
+   ],
+   "zone": 6
+  },
+  {
+   "id": "sar",
+   "line": "dat",
+   "x": 35,
+   "name": "Subject Access",
+   "scale": "S",
+   "ai": false,
+   "pillar": 25,
+   "owner": "Data Protection Officer",
+   "inputs": [
+    "Customer data requests"
+   ],
+   "outputs": [
+    "Data exports",
+    "Erasures"
+   ],
+   "zone": 6
+  },
+  {
+   "id": "retain",
+   "line": "dat",
+   "x": 38,
+   "name": "Retention & Deletion",
+   "scale": "S",
+   "ai": false,
+   "pillar": 25,
+   "owner": "Data Protection Officer",
+   "inputs": [
+    "Retention schedule"
+   ],
+   "outputs": [
+    "Deleted or archived data",
+    "Deletion certificate"
+   ],
+   "zone": 7
+  },
+  {
+   "id": "devenv",
+   "line": "eng",
+   "x": 13,
+   "name": "Dev Environment",
+   "scale": "S",
+   "ai": false,
+   "pillar": 3,
+   "owner": "Tech Lead",
+   "inputs": [
+    "Tech stack"
+   ],
+   "outputs": [
+    "Local setup",
+    "Developer tooling"
+   ],
+   "zone": 3
+  },
+  {
+   "id": "standards",
+   "line": "eng",
+   "x": 14,
+   "name": "Coding Standards",
+   "scale": "S",
+   "ai": false,
+   "pillar": 3,
+   "owner": "Tech Lead",
+   "inputs": [
+    "Tech stack",
+    "Organisation conventions"
+   ],
+   "outputs": [
+    "Lint rules",
+    "Review checklist"
+   ],
+   "zone": 3
+  },
+  {
+   "id": "repo",
+   "line": "eng",
+   "x": 16,
+   "name": "Repo & Branching",
+   "scale": "S",
+   "ai": false,
+   "pillar": 3,
+   "owner": "Tech Lead",
+   "inputs": [
+    "Coding standards"
+   ],
+   "outputs": [
+    "Repository",
+    "Branch strategy"
+   ],
+   "zone": 3
+  },
+  {
+   "id": "skeleton",
+   "line": "eng",
+   "x": 17,
+   "name": "Walking Skeleton",
+   "scale": "S",
+   "ai": false,
+   "pillar": 3,
+   "owner": "Developer",
+   "inputs": [
+    "Architecture",
+    "Pipeline"
+   ],
+   "outputs": [
+    "Thin end-to-end slice"
+   ],
+   "zone": 3
+  },
+  {
+   "id": "frontend",
+   "line": "eng",
+   "x": 20,
+   "name": "Frontend",
+   "scale": "S",
+   "ai": false,
+   "pillar": 3,
+   "owner": "Developer",
+   "inputs": [
+    "Hi-fi UI",
+    "API contracts"
+   ],
+   "outputs": [
+    "User interface code"
+   ],
+   "zone": 4
+  },
+  {
+   "id": "backend",
+   "line": "eng",
+   "x": 21,
+   "name": "Backend & APIs",
+   "scale": "S",
+   "ai": false,
+   "pillar": 3,
+   "owner": "Developer",
+   "inputs": [
+    "API contracts",
+    "Schema"
+   ],
+   "outputs": [
+    "Services",
+    "Endpoints"
+   ],
+   "zone": 4
+  },
+  {
+   "id": "aifeat",
+   "line": "eng",
+   "x": 22,
+   "name": "AI Features",
+   "scale": "S",
+   "ai": true,
+   "pillar": 7,
+   "owner": "ML Engineer",
+   "inputs": [
+    "Chosen model",
+    "Prompts"
+   ],
+   "outputs": [
+    "AI-powered features",
+    "Guardrails"
+   ],
+   "zone": 4
+  },
+  {
+   "id": "codereview",
+   "line": "eng",
+   "x": 23,
+   "name": "Code Review",
+   "scale": "S",
+   "ai": false,
+   "pillar": 3,
+   "owner": "Developer",
+   "inputs": [
+    "Pull request",
+    "Coding standards"
+   ],
+   "outputs": [
+    "Approved change",
+    "Review comments"
+   ],
+   "zone": 4
+  },
+  {
+   "id": "merge",
+   "line": "eng",
+   "x": 25,
+   "name": "Merge to Main",
+   "scale": "S",
+   "ai": false,
+   "pillar": 3,
+   "owner": "Tech Lead",
+   "inputs": [
+    "Approved code",
+    "Green build"
+   ],
+   "outputs": [
+    "Releasable main branch"
+   ],
+   "zone": 4
+  },
+  {
+   "id": "bugfix",
+   "line": "eng",
+   "x": 33,
+   "name": "Bug Fixes",
+   "scale": "S",
+   "ai": false,
+   "pillar": 15,
+   "owner": "Developer",
+   "inputs": [
+    "Incidents",
+    "Defects"
+   ],
+   "outputs": [
+    "Patched code"
+   ],
+   "zone": 6
+  },
+  {
+   "id": "deps",
+   "line": "eng",
+   "x": 34,
+   "name": "Dependency Updates",
+   "scale": "S",
+   "ai": false,
+   "pillar": 15,
+   "owner": "Developer",
+   "inputs": [
+    "Vulnerability alerts",
+    "Library releases"
+   ],
+   "outputs": [
+    "Upgraded packages"
+   ],
+   "zone": 6
+  },
+  {
+   "id": "refactor",
+   "line": "eng",
+   "x": 35,
+   "name": "Refactoring",
+   "scale": "S",
+   "ai": false,
+   "pillar": 15,
+   "owner": "Developer",
+   "inputs": [
+    "Tech debt register"
+   ],
+   "outputs": [
+    "Cleaner, cheaper-to-change code"
+   ],
+   "zone": 6
+  },
+  {
+   "id": "hotfix",
+   "line": "eng",
+   "x": 37,
+   "name": "Hotfix",
+   "scale": "S",
+   "ai": false,
+   "pillar": 15,
+   "owner": "Developer",
+   "inputs": [
+    "Priority 1 incident"
+   ],
+   "outputs": [
+    "Emergency fix"
+   ],
+   "zone": 6
+  },
+  {
+   "id": "accept",
+   "line": "qa",
+   "x": 7,
+   "name": "Acceptance Criteria",
+   "scale": "S",
+   "ai": false,
+   "pillar": 8,
+   "owner": "Business Analyst",
+   "inputs": [
+    "Requirements"
+   ],
+   "outputs": [
+    "Testable criteria (Given / When / Then)"
+   ],
+   "zone": 2
+  },
+  {
+   "id": "teststrat",
+   "line": "qa",
+   "x": 10,
+   "name": "Test Strategy",
+   "scale": "S",
+   "ai": false,
+   "pillar": 8,
+   "owner": "Test Lead",
+   "inputs": [
+    "NFRs",
+    "Risk register"
+   ],
+   "outputs": [
+    "Test approach",
+    "Levels and tools"
+   ],
+   "zone": 2
+  },
+  {
+   "id": "testplan",
+   "line": "qa",
+   "x": 11,
+   "name": "Test Plan",
+   "scale": "M",
+   "ai": false,
+   "pillar": 8,
+   "owner": "Test Lead",
+   "inputs": [
+    "Test strategy",
+    "Roadmap"
+   ],
+   "outputs": [
+    "Scope",
+    "Schedule",
+    "Entry and exit criteria"
+   ],
+   "zone": 2
+  },
+  {
+   "id": "testenv",
+   "line": "qa",
+   "x": 13,
+   "name": "Test Environments",
+   "scale": "S",
+   "ai": false,
+   "pillar": 8,
+   "owner": "Test Lead",
+   "inputs": [
+    "Infrastructure",
+    "Seed data"
+   ],
+   "outputs": [
+    "Stable test environments"
+   ],
+   "zone": 3
+  },
+  {
+   "id": "automation",
+   "line": "qa",
+   "x": 16,
+   "name": "Test Automation",
+   "scale": "S",
+   "ai": false,
+   "pillar": 8,
+   "owner": "QA Engineer",
+   "inputs": [
+    "Test strategy",
+    "Tech stack"
+   ],
+   "outputs": [
+    "Automation framework"
+   ],
+   "zone": 3
+  },
+  {
+   "id": "unit",
+   "line": "qa",
+   "x": 20,
+   "name": "Unit Tests",
+   "scale": "S",
+   "ai": false,
+   "pillar": 8,
+   "owner": "Developer",
+   "inputs": [
+    "Code"
+   ],
+   "outputs": [
+    "Coverage report"
+   ],
+   "zone": 4
+  },
+  {
+   "id": "integ",
+   "line": "qa",
+   "x": 21,
+   "name": "Integration Tests",
+   "scale": "S",
+   "ai": false,
+   "pillar": 8,
+   "owner": "QA Engineer",
+   "inputs": [
+    "Services",
+    "Test environment"
+   ],
+   "outputs": [
+    "Integration results"
+   ],
+   "zone": 4
+  },
+  {
+   "id": "contract",
+   "line": "qa",
+   "x": 22,
+   "name": "Contract Tests",
+   "scale": "M",
+   "ai": false,
+   "pillar": 8,
+   "owner": "QA Engineer",
+   "inputs": [
+    "API contracts"
+   ],
+   "outputs": [
+    "Consumer and provider checks"
+   ],
+   "zone": 4
+  },
+  {
+   "id": "a11ytest",
+   "line": "qa",
+   "x": 23,
+   "name": "Accessibility Tests",
+   "scale": "S",
+   "ai": false,
+   "pillar": 8,
+   "owner": "QA Engineer",
+   "inputs": [
+    "Built user interface"
+   ],
+   "outputs": [
+    "Automated and manual results"
+   ],
+   "zone": 4
+  },
+  {
+   "id": "regression",
+   "line": "qa",
+   "x": 25,
+   "name": "Regression Suite",
+   "scale": "S",
+   "ai": false,
+   "pillar": 8,
+   "owner": "QA Engineer",
+   "inputs": [
+    "All automated tests"
+   ],
+   "outputs": [
+    "Regression pass or fail"
+   ],
+   "zone": 4
+  },
+  {
+   "id": "perf",
+   "line": "qa",
+   "x": 26,
+   "name": "Performance Tests",
+   "scale": "M",
+   "ai": false,
+   "pillar": 8,
+   "owner": "QA Engineer",
+   "inputs": [
+    "NFRs",
+    "Staging environment"
+   ],
+   "outputs": [
+    "Load and stress results"
+   ],
+   "zone": 5
+  },
+  {
+   "id": "uat",
+   "line": "qa",
+   "x": 27,
+   "name": "UAT",
+   "scale": "S",
+   "ai": false,
+   "pillar": 8,
+   "owner": "Product Owner",
+   "inputs": [
+    "Release candidate",
+    "Acceptance criteria"
+   ],
+   "outputs": [
+    "Business sign-off"
+   ],
+   "zone": 5
+  },
+  {
+   "id": "smoke",
+   "line": "qa",
+   "x": 29,
+   "name": "Smoke Tests",
+   "scale": "S",
+   "ai": false,
+   "pillar": 8,
+   "owner": "QA Engineer",
+   "inputs": [
+    "Production deploy"
+   ],
+   "outputs": [
+    "Live check pass or fail"
+   ],
+   "zone": 5
+  },
+  {
+   "id": "regscan",
+   "line": "sec",
+   "x": 6,
+   "name": "Regulatory Scan",
+   "scale": "S",
+   "ai": false,
+   "pillar": 13,
+   "owner": "Compliance Lead",
+   "inputs": [
+    "Sector",
+    "Data types",
+    "Countries served"
+   ],
+   "outputs": [
+    "Applicable laws and standards (GDPR, ISO 27001, PCI DSS and others)"
+   ],
+   "zone": 2
+  },
+  {
+   "id": "threat",
+   "line": "sec",
+   "x": 7,
+   "name": "Threat Model",
+   "scale": "S",
+   "ai": false,
+   "pillar": 10,
+   "owner": "Security Architect",
+   "inputs": [
+    "Context diagram",
+    "Data classification"
+   ],
+   "outputs": [
+    "Threats",
+    "Controls (STRIDE)"
+   ],
+   "zone": 2
+  },
+  {
+   "id": "secreq",
+   "line": "sec",
+   "x": 8,
+   "name": "Security Stories",
+   "scale": "S",
+   "ai": false,
+   "pillar": 10,
+   "owner": "Security Architect",
+   "inputs": [
+    "Threat model",
+    "Regulation"
+   ],
+   "outputs": [
+    "Security user stories"
+   ],
+   "zone": 2
+  },
+  {
+   "id": "airisk",
+   "line": "sec",
+   "x": 10,
+   "name": "AI Risk Assessment",
+   "scale": "S",
+   "ai": true,
+   "pillar": 23,
+   "owner": "Compliance Lead",
+   "inputs": [
+    "AI use case",
+    "EU AI Act and NIST AI RMF"
+   ],
+   "outputs": [
+    "Risk tier",
+    "Required controls"
+   ],
+   "zone": 2
+  },
+  {
+   "id": "iam",
+   "line": "sec",
+   "x": 11,
+   "name": "Access Model",
+   "scale": "S",
+   "ai": false,
+   "pillar": 10,
+   "owner": "Security Architect",
+   "inputs": [
+    "Roles",
+    "Data classification"
+   ],
+   "outputs": [
+    "Roles and permissions",
+    "Authentication design"
+   ],
+   "zone": 2
+  },
+  {
+   "id": "secdesign",
+   "line": "sec",
+   "x": 13,
+   "name": "Secure Design Review",
+   "scale": "M",
+   "ai": false,
+   "pillar": 10,
+   "owner": "Security Architect",
+   "inputs": [
+    "Solution architecture"
+   ],
+   "outputs": [
+    "Review findings"
+   ],
+   "zone": 3
+  },
+  {
+   "id": "secrets",
+   "line": "sec",
+   "x": 14,
+   "name": "Secrets Management",
+   "scale": "S",
+   "ai": false,
+   "pillar": 10,
+   "owner": "DevOps Engineer",
+   "inputs": [
+    "Tech stack",
+    "Environments"
+   ],
+   "outputs": [
+    "Vault setup",
+    "Rotation policy"
+   ],
+   "zone": 3
+  },
+  {
+   "id": "sbom",
+   "line": "sec",
+   "x": 16,
+   "name": "SBOM",
+   "scale": "M",
+   "ai": false,
+   "pillar": 26,
+   "owner": "DevOps Engineer",
+   "inputs": [
+    "Dependencies"
+   ],
+   "outputs": [
+    "Software bill of materials"
+   ],
+   "zone": 3
+  },
+  {
+   "id": "sast",
+   "line": "sec",
+   "x": 17,
+   "name": "SAST & Dep Scan",
+   "scale": "S",
+   "ai": false,
+   "pillar": 10,
+   "owner": "DevOps Engineer",
+   "inputs": [
+    "Source code",
+    "Dependencies"
+   ],
+   "outputs": [
+    "Code and dependency findings"
+   ],
+   "zone": 3
+  },
+  {
+   "id": "licence",
+   "line": "sec",
+   "x": 20,
+   "name": "Licence Check",
+   "scale": "M",
+   "ai": false,
+   "pillar": 26,
+   "owner": "Compliance Lead",
+   "inputs": [
+    "SBOM"
+   ],
+   "outputs": [
+    "Licence compliance"
+   ],
+   "zone": 4
+  },
+  {
+   "id": "dast",
+   "line": "sec",
+   "x": 21,
+   "name": "DAST",
+   "scale": "M",
+   "ai": false,
+   "pillar": 10,
+   "owner": "Security Tester",
+   "inputs": [
+    "Running application"
+   ],
+   "outputs": [
+    "Runtime vulnerabilities"
+   ],
+   "zone": 4
+  },
+  {
+   "id": "pentest",
+   "line": "sec",
+   "x": 22,
+   "name": "Pen Test",
+   "scale": "M",
+   "ai": false,
+   "pillar": 10,
+   "owner": "Security Tester",
+   "inputs": [
+    "Staging application",
+    "Test scope"
+   ],
+   "outputs": [
+    "Pen test report",
+    "Remediation list"
+   ],
+   "zone": 4
+  },
+  {
+   "id": "evidence",
+   "line": "sec",
+   "x": 23,
+   "name": "Compliance Evidence",
+   "scale": "M",
+   "ai": false,
+   "pillar": 13,
+   "owner": "Compliance Lead",
+   "inputs": [
+    "Controls",
+    "Test results"
+   ],
+   "outputs": [
+    "Evidence pack"
+   ],
+   "zone": 4
+  },
+  {
+   "id": "accred",
+   "line": "sec",
+   "x": 25,
+   "name": "Accreditation",
+   "scale": "P",
+   "ai": false,
+   "pillar": 13,
+   "owner": "Senior Information Risk Owner",
+   "inputs": [
+    "Evidence pack",
+    "Risk acceptance"
+   ],
+   "outputs": [
+    "Approval to operate"
+   ],
+   "zone": 4
+  },
+  {
+   "id": "vulnwatch",
+   "line": "sec",
+   "x": 29,
+   "name": "Vulnerability Watch",
+   "scale": "S",
+   "ai": false,
+   "pillar": 26,
+   "owner": "Security Engineer",
+   "inputs": [
+    "CVE feeds",
+    "SBOM"
+   ],
+   "outputs": [
+    "Patch alerts"
+   ],
+   "zone": 5
+  },
+  {
+   "id": "audit",
+   "line": "sec",
+   "x": 30,
+   "name": "Audit",
+   "scale": "L",
+   "ai": false,
+   "pillar": 13,
+   "owner": "Compliance Lead",
+   "inputs": [
+    "Evidence",
+    "Logs"
+   ],
+   "outputs": [
+    "Audit findings"
+   ],
+   "zone": 5
+  },
+  {
+   "id": "secinc",
+   "line": "sec",
+   "x": 33,
+   "name": "Security Incidents",
+   "scale": "S",
+   "ai": false,
+   "pillar": 10,
+   "owner": "Security Engineer",
+   "inputs": [
+    "Alerts",
+    "Reports from users"
+   ],
+   "outputs": [
+    "Contained incident",
+    "Root cause"
+   ],
+   "zone": 6
+  },
+  {
+   "id": "recert",
+   "line": "sec",
+   "x": 34,
+   "name": "Access Recertification",
+   "scale": "L",
+   "ai": false,
+   "pillar": 10,
+   "owner": "Security Engineer",
+   "inputs": [
+    "User list",
+    "Roles"
+   ],
+   "outputs": [
+    "Removed stale access"
+   ],
+   "zone": 6
+  },
+  {
+   "id": "sanitise",
+   "line": "sec",
+   "x": 38,
+   "name": "Data Sanitisation",
+   "scale": "S",
+   "ai": false,
+   "pillar": 10,
+   "owner": "Security Engineer",
+   "inputs": [
+    "Decommission plan"
+   ],
+   "outputs": [
+    "Wiped storage",
+    "Destruction certificates"
+   ],
+   "zone": 7
+  },
+  {
+   "id": "hosting",
+   "line": "ops",
+   "x": 12,
+   "name": "Hosting Choice",
+   "scale": "S",
+   "ai": false,
+   "pillar": 6,
+   "owner": "DevOps Engineer",
+   "inputs": [
+    "NFRs",
+    "Budget",
+    "Data residency"
+   ],
+   "outputs": [
+    "Cloud or on-premises choice",
+    "Regions"
+   ],
+   "zone": 3
+  },
+  {
+   "id": "iac",
+   "line": "ops",
+   "x": 13,
+   "name": "Infrastructure as Code",
+   "scale": "M",
+   "ai": false,
+   "pillar": 6,
+   "owner": "DevOps Engineer",
+   "inputs": [
+    "Hosting choice"
+   ],
+   "outputs": [
+    "Terraform or Bicep modules"
+   ],
+   "zone": 3
+  },
+  {
+   "id": "envs",
+   "line": "ops",
+   "x": 14,
+   "name": "Environments",
+   "scale": "S",
+   "ai": false,
+   "pillar": 6,
+   "owner": "DevOps Engineer",
+   "inputs": [
+    "Infrastructure code"
+   ],
+   "outputs": [
+    "Dev, test, staging and production"
+   ],
+   "zone": 3
+  },
+  {
+   "id": "ci",
+   "line": "ops",
+   "x": 16,
+   "name": "CI Pipeline",
+   "scale": "S",
+   "ai": false,
+   "pillar": 9,
+   "owner": "DevOps Engineer",
+   "inputs": [
+    "Repository",
+    "Automated tests"
+   ],
+   "outputs": [
+    "Automated build and test"
+   ],
+   "zone": 3
+  },
+  {
+   "id": "cd",
+   "line": "ops",
+   "x": 17,
+   "name": "CD Pipeline",
+   "scale": "S",
+   "ai": false,
+   "pillar": 9,
+   "owner": "DevOps Engineer",
+   "inputs": [
+    "CI pipeline",
+    "Environments"
+   ],
+   "outputs": [
+    "Automated deployments"
+   ],
+   "zone": 3
+  },
+  {
+   "id": "obs",
+   "line": "ops",
+   "x": 20,
+   "name": "Observability",
+   "scale": "S",
+   "ai": false,
+   "pillar": 12,
+   "owner": "Site Reliability Engineer",
+   "inputs": [
+    "NFRs",
+    "Services"
+   ],
+   "outputs": [
+    "Logs, metrics and traces"
+   ],
+   "zone": 4
+  },
+  {
+   "id": "flags",
+   "line": "ops",
+   "x": 21,
+   "name": "Feature Flags",
+   "scale": "M",
+   "ai": false,
+   "pillar": 21,
+   "owner": "Developer",
+   "inputs": [
+    "Release plan"
+   ],
+   "outputs": [
+    "Toggle configuration"
+   ],
+   "zone": 4
+  },
+  {
+   "id": "relplan",
+   "line": "ops",
+   "x": 22,
+   "name": "Release Plan",
+   "scale": "S",
+   "ai": false,
+   "pillar": 21,
+   "owner": "Delivery Manager",
+   "inputs": [
+    "Roadmap",
+    "Done items"
+   ],
+   "outputs": [
+    "Release scope",
+    "Date",
+    "Comms"
+   ],
+   "zone": 4
+  },
+  {
+   "id": "staging",
+   "line": "ops",
+   "x": 25,
+   "name": "Staging Deploy",
+   "scale": "S",
+   "ai": false,
+   "pillar": 9,
+   "owner": "DevOps Engineer",
+   "inputs": [
+    "Merged main branch"
+   ],
+   "outputs": [
+    "Release candidate in staging"
+   ],
+   "zone": 4
+  },
+  {
+   "id": "changereq",
+   "line": "ops",
+   "x": 26,
+   "name": "Change Request",
+   "scale": "L",
+   "ai": false,
+   "pillar": 21,
+   "owner": "Delivery Manager",
+   "inputs": [
+    "Release candidate",
+    "Impact assessment"
+   ],
+   "outputs": [
+    "Change board approval"
+   ],
+   "zone": 5
+  },
+  {
+   "id": "rollback",
+   "line": "ops",
+   "x": 27,
+   "name": "Rollback Plan",
+   "scale": "S",
+   "ai": false,
+   "pillar": 9,
+   "owner": "DevOps Engineer",
+   "inputs": [
+    "Release plan"
+   ],
+   "outputs": [
+    "Tested rollback steps"
+   ],
+   "zone": 5
+  },
+  {
+   "id": "proddeploy",
+   "line": "ops",
+   "x": 29,
+   "name": "Production Deploy",
+   "scale": "S",
+   "ai": false,
+   "pillar": 9,
+   "owner": "DevOps Engineer",
+   "inputs": [
+    "Approved release"
+   ],
+   "outputs": [
+    "Live release"
+   ],
+   "zone": 5
+  },
+  {
+   "id": "hypercare",
+   "line": "ops",
+   "x": 30,
+   "name": "Hypercare",
+   "scale": "S",
+   "ai": false,
+   "pillar": 12,
+   "owner": "Site Reliability Engineer",
+   "inputs": [
+    "Live release"
+   ],
+   "outputs": [
+    "Early-life support",
+    "Stable service"
+   ],
+   "zone": 5
+  },
+  {
+   "id": "servicedesk",
+   "line": "ops",
+   "x": 31,
+   "name": "Service Desk",
+   "scale": "M",
+   "ai": false,
+   "pillar": 12,
+   "owner": "Service Owner",
+   "inputs": [
+    "Runbooks",
+    "User guides"
+   ],
+   "outputs": [
+    "Ticket handling",
+    "Escalation paths"
+   ],
+   "zone": 6
+  },
+  {
+   "id": "monitor",
+   "line": "ops",
+   "x": 33,
+   "name": "Monitoring & Alerts",
+   "scale": "S",
+   "ai": false,
+   "pillar": 12,
+   "owner": "Site Reliability Engineer",
+   "inputs": [
+    "Observability"
+   ],
+   "outputs": [
+    "Alerts",
+    "Dashboards"
+   ],
+   "zone": 6
+  },
+  {
+   "id": "incident",
+   "line": "ops",
+   "x": 34,
+   "name": "Incident Management",
+   "scale": "S",
+   "ai": false,
+   "pillar": 12,
+   "owner": "Service Owner",
+   "inputs": [
+    "Alerts",
+    "Tickets"
+   ],
+   "outputs": [
+    "Resolved incidents",
+    "Post-incident review"
+   ],
+   "zone": 6
+  },
+  {
+   "id": "slo",
+   "line": "ops",
+   "x": 35,
+   "name": "SLO Review",
+   "scale": "M",
+   "ai": false,
+   "pillar": 12,
+   "owner": "Site Reliability Engineer",
+   "inputs": [
+    "Monitoring data"
+   ],
+   "outputs": [
+    "SLO compliance",
+    "Error budget"
+   ],
+   "zone": 6
+  },
+  {
+   "id": "patching",
+   "line": "ops",
+   "x": 37,
+   "name": "Capacity & Patching",
+   "scale": "S",
+   "ai": false,
+   "pillar": 6,
+   "owner": "DevOps Engineer",
+   "inputs": [
+    "Capacity trends",
+    "Patches"
+   ],
+   "outputs": [
+    "Scaled, patched estate"
+   ],
+   "zone": 6
+  },
+  {
+   "id": "decomplan",
+   "line": "ops",
+   "x": 38,
+   "name": "Decommission Plan",
+   "scale": "S",
+   "ai": false,
+   "pillar": 21,
+   "owner": "Delivery Manager",
+   "inputs": [
+    "Sunset decision"
+   ],
+   "outputs": [
+    "Shutdown steps",
+    "Data handling"
+   ],
+   "zone": 7
+  },
+  {
+   "id": "shutdown",
+   "line": "ops",
+   "x": 39,
+   "name": "Shutdown",
+   "scale": "S",
+   "ai": false,
+   "pillar": 6,
+   "owner": "DevOps Engineer",
+   "inputs": [
+    "Decommission plan"
+   ],
+   "outputs": [
+    "Services off",
+    "Infrastructure deleted"
+   ],
+   "zone": 7
+  },
+  {
+   "id": "sponsor",
+   "line": "gov",
+   "x": 0,
+   "name": "Sponsor",
+   "scale": "S",
+   "ai": false,
+   "pillar": 11,
+   "owner": "Executive Sponsor",
+   "inputs": [
+    "Mandate"
+   ],
+   "outputs": [
+    "Accountable owner"
+   ],
+   "zone": 1
+  },
+  {
+   "id": "team",
+   "line": "gov",
+   "x": 1,
+   "name": "Team & Roles",
+   "scale": "S",
+   "ai": false,
+   "pillar": 11,
+   "owner": "Delivery Manager",
+   "inputs": [
+    "Scope",
+    "Budget"
+   ],
+   "outputs": [
+    "Team structure",
+    "RACI"
+   ],
+   "zone": 1
+  },
+  {
+   "id": "method",
+   "line": "gov",
+   "x": 2,
+   "name": "Methodology",
+   "scale": "S",
+   "ai": false,
+   "pillar": 1,
+   "owner": "Delivery Manager",
+   "inputs": [
+    "Team size",
+    "Risk profile"
+   ],
+   "outputs": [
+    "Agile, Scrum, Kanban or hybrid"
+   ],
+   "zone": 1
+  },
+  {
+   "id": "budget",
+   "line": "gov",
+   "x": 4,
+   "name": "Budget",
+   "scale": "S",
+   "ai": false,
+   "pillar": 22,
+   "owner": "Finance Lead",
+   "inputs": [
+    "Business goals",
+    "Estimates"
+   ],
+   "outputs": [
+    "Budget envelope"
+   ],
+   "zone": 1
+  },
+  {
+   "id": "risk",
+   "line": "gov",
+   "x": 5,
+   "name": "Risk Register",
+   "scale": "S",
+   "ai": false,
+   "pillar": 30,
+   "owner": "Delivery Manager",
+   "inputs": [
+    "Known risks"
+   ],
+   "outputs": [
+    "Scored risks",
+    "Risk owners"
+   ],
+   "zone": 1
+  },
+  {
+   "id": "vendorsel",
+   "line": "gov",
+   "x": 6,
+   "name": "Vendor Selection",
+   "scale": "M",
+   "ai": false,
+   "pillar": 29,
+   "owner": "Procurement Lead",
+   "inputs": [
+    "Build vs buy decision",
+    "Requirements"
+   ],
+   "outputs": [
+    "Shortlist",
+    "Due diligence"
+   ],
+   "zone": 2
+  },
+  {
+   "id": "contracts",
+   "line": "gov",
+   "x": 7,
+   "name": "Contracts",
+   "scale": "M",
+   "ai": false,
+   "pillar": 29,
+   "owner": "Procurement Lead",
+   "inputs": [
+    "Chosen vendor"
+   ],
+   "outputs": [
+    "Signed contracts",
+    "SLAs"
+   ],
+   "zone": 2
+  },
+  {
+   "id": "resourcing",
+   "line": "gov",
+   "x": 8,
+   "name": "Resourcing",
+   "scale": "S",
+   "ai": false,
+   "pillar": 11,
+   "owner": "Delivery Manager",
+   "inputs": [
+    "Delivery plan",
+    "Skills gaps"
+   ],
+   "outputs": [
+    "Hires, contractors or partners"
+   ],
+   "zone": 2
+  },
+  {
+   "id": "dplan",
+   "line": "gov",
+   "x": 10,
+   "name": "Delivery Plan",
+   "scale": "S",
+   "ai": false,
+   "pillar": 11,
+   "owner": "Delivery Manager",
+   "inputs": [
+    "Roadmap",
+    "Team"
+   ],
+   "outputs": [
+    "Milestones",
+    "Dependencies"
+   ],
+   "zone": 2
+  },
+  {
+   "id": "board",
+   "line": "gov",
+   "x": 13,
+   "name": "Governance Board",
+   "scale": "L",
+   "ai": false,
+   "pillar": 30,
+   "owner": "Executive Sponsor",
+   "inputs": [
+    "Delivery plan",
+    "Escalations"
+   ],
+   "outputs": [
+    "Decisions",
+    "Risk acceptance"
+   ],
+   "zone": 3
+  },
+  {
+   "id": "burn",
+   "line": "gov",
+   "x": 21,
+   "name": "Burn & Velocity",
+   "scale": "S",
+   "ai": false,
+   "pillar": 22,
+   "owner": "Delivery Manager",
+   "inputs": [
+    "Sprint data",
+    "Budget"
+   ],
+   "outputs": [
+    "Burn-up chart",
+    "Forecast"
+   ],
+   "zone": 4
+  },
+  {
+   "id": "cloudcost",
+   "line": "gov",
+   "x": 22,
+   "name": "Cloud Cost Model",
+   "scale": "S",
+   "ai": false,
+   "pillar": 22,
+   "owner": "FinOps Lead",
+   "inputs": [
+    "Hosting choice",
+    "Usage forecast"
+   ],
+   "outputs": [
+    "Monthly run cost"
+   ],
+   "zone": 4
+  },
+  {
+   "id": "stagegate",
+   "line": "gov",
+   "x": 25,
+   "name": "Stage Gate Review",
+   "scale": "L",
+   "ai": false,
+   "pillar": 30,
+   "owner": "Executive Sponsor",
+   "inputs": [
+    "Phase outputs"
+   ],
+   "outputs": [
+    "Proceed or stop decision"
+   ],
+   "zone": 4
+  },
+  {
+   "id": "serviceassess",
+   "line": "gov",
+   "x": 26,
+   "name": "Service Assessment",
+   "scale": "P",
+   "ai": false,
+   "pillar": 30,
+   "owner": "Service Owner",
+   "inputs": [
+    "Service standard evidence"
+   ],
+   "outputs": [
+    "Pass or fail (Alpha, Beta, Live)"
+   ],
+   "zone": 5
+  },
+  {
+   "id": "opbudget",
+   "line": "gov",
+   "x": 30,
+   "name": "Operating Budget",
+   "scale": "S",
+   "ai": false,
+   "pillar": 22,
+   "owner": "Finance Lead",
+   "inputs": [
+    "Run cost",
+    "Support model"
+   ],
+   "outputs": [
+    "Business-as-usual budget"
+   ],
+   "zone": 5
+  },
+  {
+   "id": "finops",
+   "line": "gov",
+   "x": 33,
+   "name": "FinOps Review",
+   "scale": "M",
+   "ai": false,
+   "pillar": 22,
+   "owner": "FinOps Lead",
+   "inputs": [
+    "Cloud bills"
+   ],
+   "outputs": [
+    "Savings",
+    "Unit costs"
+   ],
+   "zone": 6
+  },
+  {
+   "id": "sustain",
+   "line": "gov",
+   "x": 34,
+   "name": "Sustainability",
+   "scale": "L",
+   "ai": false,
+   "pillar": 28,
+   "owner": "Sustainability Lead",
+   "inputs": [
+    "Energy and usage data"
+   ],
+   "outputs": [
+    "Carbon footprint",
+    "Reduction actions"
+   ],
+   "zone": 6
+  },
+  {
+   "id": "vendorrev",
+   "line": "gov",
+   "x": 35,
+   "name": "Vendor Review",
+   "scale": "M",
+   "ai": false,
+   "pillar": 29,
+   "owner": "Procurement Lead",
+   "inputs": [
+    "SLA performance"
+   ],
+   "outputs": [
+    "Renew or exit decisions"
+   ],
+   "zone": 6
+  },
+  {
+   "id": "lessons",
+   "line": "gov",
+   "x": 37,
+   "name": "Lessons Learned",
+   "scale": "S",
+   "ai": false,
+   "pillar": 30,
+   "owner": "Delivery Manager",
+   "inputs": [
+    "Retrospectives",
+    "Incidents"
+   ],
+   "outputs": [
+    "Improvement actions"
+   ],
+   "zone": 6
+  },
+  {
+   "id": "exit",
+   "line": "gov",
+   "x": 38,
+   "name": "Contract Exit",
+   "scale": "M",
+   "ai": false,
+   "pillar": 29,
+   "owner": "Procurement Lead",
+   "inputs": [
+    "Decommission plan"
+   ],
+   "outputs": [
+    "Terminated contracts",
+    "Data returned"
+   ],
+   "zone": 7
+  }
+ ],
+ "gates": [
+  {
+   "id": "kickoff",
+   "x": 3,
+   "zone": 1,
+   "name": "Discovery Kick-off",
+   "lines": [
+    "doc",
+    "str",
+    "ux",
+    "gov"
+   ],
+   "inputs": [
+    "Idea and business goals",
+    "Sponsor and core team",
+    "Access to real users"
+   ],
+   "outputs": [
+    "Discovery scope",
+    "Research plan",
+    "Documentation standards agreed"
+   ],
+   "failure": "Delivery starts before the sponsor, the team or real users are lined up."
+  },
+  {
+   "id": "reqbase",
+   "x": 9,
+   "zone": 2,
+   "name": "Requirements Baseline",
+   "lines": [
+    "doc",
+    "str",
+    "ux",
+    "arc",
+    "dat",
+    "qa",
+    "sec"
+   ],
+   "inputs": [
+    "User needs",
+    "Business case",
+    "NFRs",
+    "Data model",
+    "Security stories"
+   ],
+   "outputs": [
+    "Signed-off requirements",
+    "Acceptance criteria",
+    "Traceability IDs"
+   ],
+   "failure": "Each discipline reads the same requirement differently, and nobody finds out until UAT."
+  },
+  {
+   "id": "designauth",
+   "x": 15,
+   "zone": 3,
+   "name": "Design Authority",
+   "lines": [
+    "ux",
+    "arc",
+    "dat",
+    "eng",
+    "qa",
+    "sec"
+   ],
+   "inputs": [
+    "Solution architecture",
+    "Tested prototype",
+    "Schema",
+    "Threat model",
+    "Testability review"
+   ],
+   "outputs": [
+    "Approved design",
+    "Architecture decisions",
+    "Build-ready specs"
+   ],
+   "failure": "The design is approved without security, data or test sign-off."
+  },
+  {
+   "id": "sprint",
+   "x": 19,
+   "zone": 4,
+   "name": "Sprint Planning",
+   "lines": [
+    "str",
+    "ux",
+    "eng",
+    "qa",
+    "ops"
+   ],
+   "inputs": [
+    "Prioritised backlog",
+    "Build-ready designs",
+    "Working pipelines"
+   ],
+   "outputs": [
+    "Sprint goal",
+    "Committed stories"
+   ],
+   "failure": "Stories enter the sprint without acceptance criteria or finished designs."
+  },
+  {
+   "id": "dod",
+   "x": 24,
+   "zone": 4,
+   "name": "Definition of Done",
+   "lines": [
+    "doc",
+    "dat",
+    "eng",
+    "qa",
+    "sec"
+   ],
+   "inputs": [
+    "Reviewed code",
+    "Passing tests",
+    "Clean security scans",
+    "Updated docs"
+   ],
+   "outputs": [
+    "Done, releasable increment"
+   ],
+   "failure": "\"Done\" means coded, not tested, secured and documented."
+  },
+  {
+   "id": "gonogo",
+   "x": 28,
+   "zone": 5,
+   "name": "Go / No-Go",
+   "lines": [
+    "doc",
+    "str",
+    "qa",
+    "sec",
+    "ops",
+    "gov"
+   ],
+   "inputs": [
+    "UAT sign-off",
+    "Security sign-off",
+    "Rollback plan",
+    "Release notes"
+   ],
+   "outputs": [
+    "Release decision"
+   ],
+   "failure": "The decision is driven by the date, not by the evidence."
+  },
+  {
+   "id": "live",
+   "x": 32,
+   "zone": 6,
+   "name": "Live Service",
+   "lines": [
+    "str",
+    "ux",
+    "dat",
+    "ops",
+    "gov"
+   ],
+   "inputs": [
+    "Production release",
+    "Runbooks",
+    "Support model",
+    "Operating budget"
+   ],
+   "outputs": [
+    "Running service",
+    "Usage data",
+    "Support tickets"
+   ],
+   "failure": "The project team leaves before support is ready to take over."
+  },
+  {
+   "id": "change",
+   "x": 36,
+   "zone": 6,
+   "name": "Change Control",
+   "lines": [
+    "arc",
+    "eng",
+    "sec",
+    "ops",
+    "gov"
+   ],
+   "inputs": [
+    "Change requests",
+    "Incidents",
+    "Tech debt"
+   ],
+   "outputs": [
+    "Approved changes",
+    "Updated roadmap"
+   ],
+   "failure": "Hotfixes skip review and quietly become permanent."
+  },
+  {
+   "id": "decom",
+   "x": 40,
+   "zone": 7,
+   "name": "Decommission",
+   "lines": [
+    "doc",
+    "dat",
+    "sec",
+    "ops",
+    "gov"
+   ],
+   "inputs": [
+    "Sunset decision",
+    "Retention rules",
+    "Contract terms"
+   ],
+   "outputs": [
+    "Archived records",
+    "Deleted data",
+    "Closed contracts"
+   ],
+   "failure": "Systems are switched off while data and costs stay live."
+  }
+ ],
+ "reports": [
+  {
+   "id": "r-discovery",
+   "family": "Front door",
+   "name": "Discovery Document",
+   "description": "Problem, goals, users and data sources in one place.",
+   "stops": [
+    "idea",
+    "goals",
+    "stake",
+    "research",
+    "personas",
+    "journeys",
+    "datasrc",
+    "kickoff"
+   ]
+  },
+  {
+   "id": "r-solution",
+   "family": "Front door",
+   "name": "Solution Report",
+   "description": "The proposed solution end to end: journeys, architecture, data, hosting and roadmap.",
+   "stops": [
+    "goals",
+    "journeys",
+    "buildbuy",
+    "nfr",
+    "context",
+    "solarch",
+    "stack",
+    "dmodel",
+    "hosting",
+    "roadmap",
+    "reqbase",
+    "designauth"
+   ]
+  },
+  {
+   "id": "r-feasrisk",
+   "family": "Front door",
+   "name": "Feasibility & Risk Report",
+   "description": "Whether it can be done, and what could stop it.",
+   "stops": [
+    "feas",
+    "techland",
+    "regscan",
+    "threat",
+    "risk",
+    "budget",
+    "airisk"
+   ]
+  },
+  {
+   "id": "r-readiness",
+   "family": "Front door",
+   "name": "Readiness Assessment",
+   "description": "How ready the organisation, team and data are to start.",
+   "stops": [
+    "goals",
+    "team",
+    "method",
+    "techland",
+    "regscan",
+    "datasrc",
+    "aiuse",
+    "kickoff"
+   ]
+  },
+  {
+   "id": "r-estimate",
+   "family": "Commercial",
+   "name": "Effort & Cost Estimate",
+   "description": "Build effort, team cost and run cost from scope and design.",
+   "stops": [
+    "backlog",
+    "solarch",
+    "dplan",
+    "resourcing",
+    "cloudcost",
+    "budget"
+   ]
+  },
+  {
+   "id": "r-bizcase",
+   "family": "Commercial",
+   "name": "Business Case & ROI",
+   "description": "Costs, benefits and payback measured against business goals.",
+   "stops": [
+    "bizcase",
+    "market",
+    "pricing",
+    "budget",
+    "cloudcost",
+    "kpi"
+   ]
+  },
+  {
+   "id": "r-buildbuy",
+   "family": "Commercial",
+   "name": "Build vs Buy vs Configure",
+   "description": "Options compared on cost, time, risk and lock-in.",
+   "stops": [
+    "buildbuy",
+    "techland",
+    "vendorsel",
+    "contracts"
+   ]
+  },
+  {
+   "id": "r-market",
+   "family": "Commercial",
+   "name": "Market & Opportunity",
+   "description": "Market size, segments and route to market.",
+   "stops": [
+    "market",
+    "goals",
+    "gtm",
+    "pricing"
+   ]
+  },
+  {
+   "id": "r-competitor",
+   "family": "Commercial",
+   "name": "Competitor Landscape",
+   "description": "Who else solves this problem, and where the gaps are.",
+   "stops": [
+    "market",
+    "gtm",
+    "pricing"
+   ]
+  },
+  {
+   "id": "r-pricing",
+   "family": "Commercial",
+   "name": "Pricing & Monetisation",
+   "description": "Price plans and how the product earns money.",
+   "stops": [
+    "pricing",
+    "bizcase",
+    "salesen"
+   ]
+  },
+  {
+   "id": "r-roadmap",
+   "family": "Delivery",
+   "name": "Product Roadmap",
+   "description": "Now / Next / Later plan tied to goals and releases.",
+   "stops": [
+    "goals",
+    "roadmap",
+    "backlog",
+    "dplan",
+    "relplan"
+   ]
+  },
+  {
+   "id": "r-trace",
+   "family": "Delivery",
+   "name": "Requirements Traceability",
+   "description": "Every requirement traced through to tests and sign-off.",
+   "stops": [
+    "backlog",
+    "reqbase",
+    "accept",
+    "teststrat",
+    "regression",
+    "uat"
+   ]
+  },
+  {
+   "id": "r-resplan",
+   "family": "Delivery",
+   "name": "Resourcing & Delivery Plan",
+   "description": "Team shape, methodology, milestones and velocity.",
+   "stops": [
+    "team",
+    "method",
+    "resourcing",
+    "dplan",
+    "sprint",
+    "burn"
+   ]
+  },
+  {
+   "id": "r-testcov",
+   "family": "Delivery",
+   "name": "Test Strategy & Coverage",
+   "description": "What is tested, how, and how much.",
+   "stops": [
+    "teststrat",
+    "testplan",
+    "automation",
+    "unit",
+    "integ",
+    "contract",
+    "regression",
+    "perf"
+   ]
+  },
+  {
+   "id": "r-release",
+   "family": "Delivery",
+   "name": "Release Readiness",
+   "description": "The evidence behind a go / no-go decision.",
+   "stops": [
+    "relplan",
+    "dod",
+    "regression",
+    "relnotes",
+    "uat",
+    "rollback",
+    "gonogo"
+   ]
+  },
+  {
+   "id": "r-handover",
+   "family": "Delivery",
+   "name": "Handover Pack",
+   "description": "What a new team or supplier needs to take over.",
+   "stops": [
+    "context",
+    "apidocs",
+    "readme",
+    "runbooks",
+    "userguide"
+   ]
+  },
+  {
+   "id": "r-ux",
+   "family": "Assurance",
+   "name": "UX & Accessibility Audit",
+   "description": "Usability findings and WCAG 2.2 AA conformance.",
+   "stops": [
+    "usability",
+    "dsys",
+    "a11yrev",
+    "a11ytest",
+    "uxsign",
+    "a11ystmt"
+   ]
+  },
+  {
+   "id": "r-archhealth",
+   "family": "Assurance",
+   "name": "Architecture Health & Tech Debt",
+   "description": "How sound the design is today, and what is decaying.",
+   "stops": [
+    "solarch",
+    "adr",
+    "codereview",
+    "archrev",
+    "techdebt",
+    "replat",
+    "deps"
+   ]
+  },
+  {
+   "id": "r-secpost",
+   "family": "Assurance",
+   "name": "Security Posture",
+   "description": "Threats, controls, test results and open vulnerabilities.",
+   "stops": [
+    "threat",
+    "secreq",
+    "secrets",
+    "sast",
+    "dast",
+    "pentest",
+    "vulnwatch",
+    "secinc"
+   ]
+  },
+  {
+   "id": "r-compliance",
+   "family": "Assurance",
+   "name": "Compliance Report",
+   "description": "The regulations that apply, and the evidence held for each.",
+   "stops": [
+    "regscan",
+    "dpia",
+    "evidence",
+    "accred",
+    "audit",
+    "recert"
+   ]
+  },
+  {
+   "id": "r-dataprot",
+   "family": "Assurance",
+   "name": "Data Protection Impact",
+   "description": "Personal data handling, privacy risks and rights requests.",
+   "stops": [
+    "dclass",
+    "dpia",
+    "iam",
+    "sar",
+    "retain"
+   ]
+  },
+  {
+   "id": "r-aigov",
+   "family": "Assurance",
+   "name": "AI Risk & Governance",
+   "description": "AI use cases, model choice, evaluation and drift.",
+   "stops": [
+    "aiuse",
+    "airisk",
+    "modelsel",
+    "evalset",
+    "aifeat",
+    "modelval",
+    "drift"
+   ]
+  },
+  {
+   "id": "r-sbom",
+   "family": "Assurance",
+   "name": "Supply Chain & SBOM",
+   "description": "Third-party components, licences and known vulnerabilities.",
+   "stops": [
+    "sbom",
+    "sast",
+    "licence",
+    "vulnwatch",
+    "deps"
+   ]
+  },
+  {
+   "id": "r-public",
+   "family": "Assurance",
+   "name": "Public Sector Assurance",
+   "description": "Spend control, service assessment and accreditation evidence.",
+   "stops": [
+    "spend",
+    "dpia",
+    "accred",
+    "stagegate",
+    "serviceassess",
+    "a11ystmt"
+   ]
+  },
+  {
+   "id": "r-opready",
+   "family": "Run & improve",
+   "name": "Operational Readiness",
+   "description": "Whether support, monitoring and recovery are in place.",
+   "stops": [
+    "obs",
+    "backup",
+    "runbooks",
+    "hypercare",
+    "servicedesk",
+    "monitor",
+    "slo"
+   ]
+  },
+  {
+   "id": "r-change",
+   "family": "Run & improve",
+   "name": "Change Impact",
+   "description": "What a proposed change touches, and what it risks.",
+   "stops": [
+    "flags",
+    "regression",
+    "changereq",
+    "techdebt",
+    "change"
+   ]
+  },
+  {
+   "id": "r-incident",
+   "family": "Run & improve",
+   "name": "Incident Review",
+   "description": "What happened, why, and what changes now.",
+   "stops": [
+    "monitor",
+    "secinc",
+    "incident",
+    "hotfix",
+    "lessons"
+   ]
+  },
+  {
+   "id": "r-finops",
+   "family": "Run & improve",
+   "name": "Cloud Cost & FinOps",
+   "description": "Run cost, waste and unit economics.",
+   "stops": [
+    "hosting",
+    "iac",
+    "cloudcost",
+    "finops",
+    "patching"
+   ]
+  },
+  {
+   "id": "r-vendor",
+   "family": "Run & improve",
+   "name": "Vendor Assessment",
+   "description": "Supplier performance, contracts and exit options.",
+   "stops": [
+    "vendorsel",
+    "contracts",
+    "vendorrev",
+    "exit"
+   ]
+  },
+  {
+   "id": "r-sustain",
+   "family": "Run & improve",
+   "name": "Sustainability Report",
+   "description": "Energy use, carbon footprint and reduction actions.",
+   "stops": [
+    "hosting",
+    "sustain",
+    "patching"
+   ]
+  },
+  {
+   "id": "r-benefits",
+   "family": "Run & improve",
+   "name": "Benefits Realisation",
+   "description": "Planned versus realised benefits after launch.",
+   "stops": [
+    "bizcase",
+    "feedback",
+    "analytics",
+    "kpi",
+    "benefits"
+   ]
+  },
+  {
+   "id": "r-portfolio",
+   "family": "Run & improve",
+   "name": "Portfolio & Benchmark",
+   "description": "Health of this service compared with others in the portfolio.",
+   "stops": [
+    "techdebt",
+    "finops",
+    "kpi",
+    "slo",
+    "benefits"
+   ]
+  },
+  {
+   "id": "r-decom",
+   "family": "Run & improve",
+   "name": "Decommission Plan",
+   "description": "Safe shutdown of data, contracts, records and infrastructure.",
+   "stops": [
+    "sunset",
+    "decomplan",
+    "retain",
+    "sanitise",
+    "exit",
+    "archive",
+    "shutdown",
+    "decom"
+   ]
+  }
+ ]
+}

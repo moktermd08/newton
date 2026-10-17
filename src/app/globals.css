@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+/*
+ * Tokens, light/dark themes and the component vocabulary (PageHeader, Card,
+ * StatTile, Button, SideNav ...) all come from ./gg-ui/styles.css, imported in
+ * the root layout. Only the public site frame lives here, built from the
+ * same tokens so public pages and the admin area read as one product.
+ */
+@layer base {
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: var(--gg-font-size);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  input, textarea, select, button { font: inherit; color: inherit; }
+  input[type="text"], input[type="email"], input[type="password"], input[type="search"], input:not([type]), textarea, select {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--gg-radius-sm);
+    padding: 0.5rem 0.65rem; width: 100%; outline: none;
+  }
+  input:focus, textarea:focus, select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 22%, transparent);
+  }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+}
+
+@layer components {
+  .site-head { position: sticky; top: 0; z-index: 10; background: var(--surface); border-bottom: 1px solid var(--border); }
+  .site-head .inner { max-width: 1100px; margin: 0 auto; padding: 10px 24px; display: flex; align-items: center; gap: 24px; }
+  .site-head .brand { display: flex; gap: 10px; align-items: center; font-weight: 700; font-size: 15px; }
+  .site-head .logo { width: 30px; height: 30px; border-radius: 8px; display: grid; place-items: center;
+                     background: var(--accent); color: var(--accent-fg); }
+  .site-head nav { display: flex; gap: 4px; flex: 1; }
+  .site-head .nav-link { padding: 6px 10px; }
+  .site-main { max-width: 1100px; margin: 0 auto; padding: 32px 24px 60px; }
+  .site-foot { border-top: 1px solid var(--border); color: var(--muted); font-size: 12px; }
+  .site-foot .inner { max-width: 1100px; margin: 0 auto; padding: 18px 24px; display: flex; justify-content: space-between; }
+  .hero { padding: 48px 0 32px; }
+  .hero h1 { font-size: 34px; letter-spacing: -.02em; font-weight: 700; margin: 0 0 8px; max-width: 18ch; }
+  .hero p { color: var(--muted); font-size: 16px; max-width: 52ch; margin: 0 0 20px; }
+  .hero .actions { display: flex; gap: 8px; }
+  .auth-card { max-width: 380px; margin: 40px auto; }
+  .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+  @media (max-width: 760px) {
+    .shell { flex-direction: column; }
+    nav.side { width: auto; flex: none; height: auto; position: static; border-right: 0; border-bottom: 1px solid var(--border); }
+    .shell > main { padding: 16px 16px 40px; }
+    .site-head .inner { gap: 12px; padding: 10px 16px; }
+    .site-main { padding: 20px 16px 40px; }
+    .hero h1 { font-size: 26px; }
+  }
+}

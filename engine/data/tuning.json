@@ -1,0 +1,290 @@
+{
+  "_notes": [
+    "Heuristic priors for the lifecycle layer. They are NOT calibrated against outcomes yet.",
+    "Pillar numbers are map pillars 1-31 (see map.js PILLAR_KEYS). Multipliers are applied to a pillar's structural weight, then all weights are renormalised.",
+    "Calibrate by running `npm run test:lifecycle` coverage and adjusting; every number here is safe to change."
+  ],
+  "structuralMass": {
+    "station": 1,
+    "perNearbyGate": 0.5,
+    "perReport": 0.25,
+    "reportCap": 4
+  },
+  "pillarBoosts": {
+    "compliancePerRegime": {
+      "pillars": [
+        13,
+        10,
+        25,
+        26,
+        30
+      ],
+      "perUnit": 0.3,
+      "cap": 4
+    },
+    "ai": {
+      "pillars": [
+        7,
+        23,
+        24
+      ],
+      "multiplier": 1.5
+    },
+    "legacy": {
+      "pillars": [
+        15,
+        20,
+        21,
+        4
+      ],
+      "multiplier": 1.5
+    },
+    "public": {
+      "pillars": [
+        13,
+        28,
+        22,
+        29
+      ],
+      "multiplier": 1.3
+    },
+    "growth": {
+      "high": {
+        "pillars": [
+          14,
+          12,
+          22
+        ],
+        "multiplier": 1.4
+      },
+      "hypergrowth": {
+        "pillars": [
+          14,
+          12,
+          22
+        ],
+        "multiplier": 1.8
+      }
+    }
+  },
+  "priorityGroups": {
+    "speed": [
+      9,
+      3,
+      16,
+      17
+    ],
+    "cost": [
+      22,
+      29
+    ],
+    "quality": [
+      8,
+      2,
+      18
+    ],
+    "risk": [
+      10,
+      13,
+      26,
+      30
+    ]
+  },
+  "priorityRange": {
+    "min": 0.7,
+    "max": 1.3
+  },
+  "vectorPriority": {
+    "cost": "v3_cost",
+    "speed": "v4_time",
+    "risk": "v9_risk",
+    "quality": "v8_tips"
+  },
+  "vectorAnalogs": {
+    "P24_AIGovernance": [
+      "P10_Security",
+      "P13_Compliance"
+    ],
+    "P25_CustomerDataLifecycle": [
+      "P04_Database",
+      "P13_Compliance"
+    ],
+    "P26_MLOps": [
+      "P09_Deployment",
+      "P07_Pattern"
+    ],
+    "P27_SupplyChainSecurity": [
+      "P10_Security",
+      "P19_Integration"
+    ],
+    "P28_CustomerOnboarding": [
+      "P12_Support",
+      "P17_Marketing"
+    ],
+    "P29_Sustainability": [
+      "P06_Hardware",
+      "P22_FinancialGovernance"
+    ],
+    "P30_VendorLifecycle": [
+      "P22_FinancialGovernance",
+      "P11_Actors"
+    ],
+    "P31_ContinuousRiskManagement": [
+      "P01_Strategy",
+      "P10_Security"
+    ],
+    "P32_ContinuousDocumentation": [
+      "P18_Documentation"
+    ]
+  },
+  "horizontalBase": {
+    "v12_patterns": 0.5,
+    "v13_compliance_map": 0.4,
+    "v14_decision_criteria": 0.6,
+    "v15_anti_patterns": 0.5,
+    "v16_maturity_model": 0.4,
+    "v17_stakeholders": 0.5,
+    "v18_buy_vs_build": 0.5
+  },
+  "rates": {
+    "_notes": "Placeholder GBP day rates by role family and org type. Replace with your own rate card; the engine only uses them for relative and indicative cost.",
+    "daysPerMonth": 20,
+    "byFamily": {
+      "delivery": {
+        "small": 450,
+        "medium": 500,
+        "large": 550,
+        "public": 520
+      },
+      "engineering": {
+        "small": 500,
+        "medium": 560,
+        "large": 620,
+        "public": 580
+      },
+      "data": {
+        "small": 550,
+        "medium": 600,
+        "large": 650,
+        "public": 620
+      },
+      "design": {
+        "small": 450,
+        "medium": 500,
+        "large": 540,
+        "public": 520
+      },
+      "quality": {
+        "small": 400,
+        "medium": 450,
+        "large": 500,
+        "public": 480
+      },
+      "security": {
+        "small": 600,
+        "medium": 680,
+        "large": 750,
+        "public": 720
+      },
+      "business": {
+        "small": 450,
+        "medium": 520,
+        "large": 600,
+        "public": 560
+      },
+      "operations": {
+        "small": 480,
+        "medium": 540,
+        "large": 600,
+        "public": 560
+      },
+      "executive": {
+        "small": 700,
+        "medium": 800,
+        "large": 900,
+        "public": 850
+      }
+    },
+    "usdToGbp": 0.78,
+    "contingency": {
+      "base": 0.1,
+      "perRiskPriority": 0.2,
+      "legacy": 0.1,
+      "ai": 0.05
+    }
+  },
+  "roleFamilies": {
+    "Technical Writer": "delivery",
+    "Business Analyst": "business",
+    "Solution Architect": "engineering",
+    "Developer": "engineering",
+    "Site Reliability Engineer": "operations",
+    "Product Owner": "business",
+    "Content Designer": "design",
+    "Sponsor": "executive",
+    "Marketing Lead": "business",
+    "Sales Lead": "business",
+    "Customer Success": "business",
+    "User Researcher": "design",
+    "Service Designer": "design",
+    "Interaction Designer": "design",
+    "Accessibility Specialist": "design",
+    "Performance Analyst": "data",
+    "Tech Lead": "engineering",
+    "Enterprise Architect": "engineering",
+    "Data Architect": "data",
+    "Data Protection Officer": "security",
+    "Data Engineer": "data",
+    "ML Engineer": "data",
+    "Compliance Lead": "security",
+    "Security Architect": "security",
+    "DevOps Engineer": "operations",
+    "Security Tester": "security",
+    "Senior Information Risk Owner": "executive",
+    "Security Engineer": "security",
+    "Delivery Manager": "delivery",
+    "Service Owner": "operations",
+    "Executive Sponsor": "executive",
+    "Finance Lead": "business",
+    "Procurement Lead": "business",
+    "FinOps Lead": "business",
+    "Sustainability Lead": "business",
+    "Test Lead": "quality",
+    "QA Engineer": "quality"
+  },
+  "commodity": {
+    "1": 0.1,
+    "2": 0.35,
+    "3": 0.2,
+    "4": 0.45,
+    "5": 0.4,
+    "6": 0.9,
+    "7": 0.35,
+    "8": 0.55,
+    "9": 0.8,
+    "10": 0.7,
+    "11": 0.5,
+    "12": 0.8,
+    "13": 0.75,
+    "14": 0.6,
+    "15": 0.4,
+    "16": 0.7,
+    "17": 0.8,
+    "18": 0.6,
+    "19": 0.5,
+    "20": 0.15,
+    "21": 0.6,
+    "22": 0.85,
+    "23": 0.5,
+    "24": 0.55,
+    "25": 0.6,
+    "26": 0.9,
+    "27": 0.65,
+    "28": 0.85,
+    "29": 0.6,
+    "30": 0.6,
+    "31": 0.6,
+    "_notes": "0 = differentiating, build-leaning; 1 = commodity, buy-leaning. Keyed by map pillar."
+  },
+  "lineFocusMultiplier": 3
+}

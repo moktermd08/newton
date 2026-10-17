@@ -1,0 +1,22 @@
+{
+  "name": "newton-engine",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Software-lifecycle decision engine: weights pillars, sub-pillars and horizontals; selects tools, technology, resources, cost and build-vs-buy.",
+  "main": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "bin": {
+    "newton": "./bin/newton-lifecycle.js"
+  },
+  "scripts": {
+    "start": "node bin/newton-lifecycle.js",
+    "test": "node --test test/*.test.js",
+    "bench": "node scripts/benchmark.mjs"
+  },
+  "engines": {
+    "node": ">=20.10"
+  }
+}

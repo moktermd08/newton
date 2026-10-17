@@ -1,0 +1,475 @@
+{
+  "engine": "Newton",
+  "version": "3.0.0",
+  "description": "Master Pillar-Vector Weight Table. 22 pillars × 11 vectors. 1.0 = Critical/Mandatory, 0.5 = Supporting/Useful, 0.0 = Irrelevant (skip to reduce noise).",
+  "vectors": {
+    "v1": "Technologies",
+    "v2": "Skills",
+    "v3": "Cost",
+    "v4": "Time",
+    "v5": "Tools",
+    "v6": "Prompts",
+    "v7": "Research",
+    "v8": "Tips",
+    "v9": "Risk Score",
+    "v10": "Integration",
+    "v11": "Agent"
+  },
+  "legend": {
+    "1.0": "Mandatory — Newton must find high-quality data for this cell",
+    "0.7": "Important — Newton should populate this cell",
+    "0.5": "Supporting — Newton provides baseline context",
+    "0.2": "Weak — Newton includes only if data is readily available",
+    "0.0": "Irrelevant — Newton skips this cell entirely"
+  },
+  "pillars": {
+    "P01_Strategy": {
+      "label": "Strategy",
+      "v1_tech": 0.2,
+      "v2_skills": 0.8,
+      "v3_cost": 1,
+      "v4_time": 0.8,
+      "v5_tools": 0.3,
+      "v6_prompts": 0.2,
+      "v7_research": 1,
+      "v8_tips": 0.7,
+      "v9_risk": 0.9,
+      "v10_int": 0,
+      "v11_agent": 0.2,
+      "note": "Strategy is human judgement. Agent can research but cannot decide. Cost and research are the most critical vectors — no plan survives without a budget and evidence."
+    },
+    "P02_Experience": {
+      "label": "Experience",
+      "v1_tech": 0.6,
+      "v2_skills": 1,
+      "v3_cost": 0.7,
+      "v4_time": 0.8,
+      "v5_tools": 0.8,
+      "v6_prompts": 0.7,
+      "v7_research": 0.8,
+      "v8_tips": 0.9,
+      "v9_risk": 0.4,
+      "v10_int": 0.6,
+      "v11_agent": 0.4,
+      "note": "Design is skills-led. Tips are critical — bad UX kills retention. Agent can generate wireframes and copy but cannot replace a UX designer's empathy for the user."
+    },
+    "P03_Code": {
+      "label": "Code",
+      "v1_tech": 1,
+      "v2_skills": 1,
+      "v3_cost": 0.6,
+      "v4_time": 0.7,
+      "v5_tools": 0.9,
+      "v6_prompts": 0.8,
+      "v7_research": 0.4,
+      "v8_tips": 0.7,
+      "v9_risk": 0.8,
+      "v10_int": 1,
+      "v11_agent": 0.9,
+      "note": "Highest agent autonomy outside Pattern. Agent can generate, review and refactor code near-autonomously. Tech and integration are both critical — wrong stack or poor API design compounds debt."
+    },
+    "P04_Database": {
+      "label": "Database",
+      "v1_tech": 1,
+      "v2_skills": 0.8,
+      "v3_cost": 0.5,
+      "v4_time": 0.5,
+      "v5_tools": 0.7,
+      "v6_prompts": 0.6,
+      "v7_research": 0.6,
+      "v8_tips": 0.8,
+      "v9_risk": 1,
+      "v10_int": 0.9,
+      "v11_agent": 0.7,
+      "note": "Risk is maximum — a corrupt or poorly designed database cannot be easily fixed post-launch. Agent can write schemas and queries but data governance requires human sign-off."
+    },
+    "P05_Content": {
+      "label": "Content",
+      "v1_tech": 0.3,
+      "v2_skills": 0.6,
+      "v3_cost": 0.8,
+      "v4_time": 0.9,
+      "v5_tools": 0.9,
+      "v6_prompts": 1,
+      "v7_research": 0.5,
+      "v8_tips": 0.7,
+      "v9_risk": 0.2,
+      "v10_int": 0.2,
+      "v11_agent": 0.9,
+      "note": "Content is where agent adds most user-visible value. Prompts are the primary vector — AI generates content from structured inputs. Time is high because content volume is always underestimated."
+    },
+    "P06_Hardware": {
+      "label": "Hardware",
+      "v1_tech": 1,
+      "v2_skills": 0.4,
+      "v3_cost": 0.9,
+      "v4_time": 0.7,
+      "v5_tools": 0.6,
+      "v6_prompts": 0.2,
+      "v7_research": 0.7,
+      "v8_tips": 0.5,
+      "v9_risk": 0.9,
+      "v10_int": 0.6,
+      "v11_agent": 0.5,
+      "note": "Tech and cost are both critical — cloud provider choice and tier lock-in are long-term cost decisions. Agent can generate IaC templates but cannot provision or approve spend."
+    },
+    "P07_Pattern": {
+      "label": "Pattern",
+      "v1_tech": 0.9,
+      "v2_skills": 0.7,
+      "v3_cost": 0.4,
+      "v4_time": 0.5,
+      "v5_tools": 1,
+      "v6_prompts": 1,
+      "v7_research": 0.8,
+      "v8_tips": 0.7,
+      "v9_risk": 0.6,
+      "v10_int": 0.8,
+      "v11_agent": 1,
+      "note": "This is the agent pillar. Agent weight is 1.0 — AI/LLM/automation patterns ARE agents. Tools and prompts are the two mandatory vectors. Cost is low because patterns replace human labour."
+    },
+    "P08_Testing": {
+      "label": "Testing",
+      "v1_tech": 0.6,
+      "v2_skills": 0.7,
+      "v3_cost": 0.5,
+      "v4_time": 0.9,
+      "v5_tools": 1,
+      "v6_prompts": 0.7,
+      "v7_research": 0.4,
+      "v8_tips": 0.8,
+      "v9_risk": 1,
+      "v10_int": 0.5,
+      "v11_agent": 0.8,
+      "note": "Risk is maximum — untested code in production causes incidents. Time is critical — testing is always squeezed at end of sprints. Agent can write and run tests near-autonomously."
+    },
+    "P09_Deployment": {
+      "label": "Deployment",
+      "v1_tech": 0.9,
+      "v2_skills": 0.6,
+      "v3_cost": 0.4,
+      "v4_time": 0.6,
+      "v5_tools": 1,
+      "v6_prompts": 0.8,
+      "v7_research": 0.3,
+      "v8_tips": 0.7,
+      "v9_risk": 0.9,
+      "v10_int": 1,
+      "v11_agent": 0.7,
+      "note": "Tools and integration are mandatory — CI/CD pipeline is worthless without the integrations (GitHub, registry, cloud). Agent generates pipeline config; human approves production deployments."
+    },
+    "P10_Security": {
+      "label": "Security",
+      "v1_tech": 1,
+      "v2_skills": 0.9,
+      "v3_cost": 0.8,
+      "v4_time": 0.7,
+      "v5_tools": 0.9,
+      "v6_prompts": 0.5,
+      "v7_research": 1,
+      "v8_tips": 0.9,
+      "v9_risk": 1,
+      "v10_int": 0.8,
+      "v11_agent": 0.5,
+      "note": "Three 1.0 vectors — tech, research, risk. Security is non-negotiable across all project sizes. Agent can audit code for vulnerabilities but humans must verify findings and sign off pen-test reports."
+    },
+    "P11_Actors": {
+      "label": "Actors",
+      "v1_tech": 0.1,
+      "v2_skills": 1,
+      "v3_cost": 1,
+      "v4_time": 0.9,
+      "v5_tools": 0.4,
+      "v6_prompts": 0.6,
+      "v7_research": 0.7,
+      "v8_tips": 0.5,
+      "v9_risk": 0.6,
+      "v10_int": 0.2,
+      "v11_agent": 0.3,
+      "note": "Skills and cost are both 1.0 — people are the largest budget item and skills gaps are the most common project killer. Tech weight is 0.1 — people are not a technology choice."
+    },
+    "P12_Support": {
+      "label": "Support",
+      "v1_tech": 0.5,
+      "v2_skills": 0.7,
+      "v3_cost": 0.6,
+      "v4_time": 0.7,
+      "v5_tools": 0.9,
+      "v6_prompts": 0.5,
+      "v7_research": 0.4,
+      "v8_tips": 1,
+      "v9_risk": 0.5,
+      "v10_int": 0.6,
+      "v11_agent": 0.8,
+      "note": "Tips are mandatory — every support organisation has hard-won lessons. Agent handles L1 triage, monitoring alerts, and incident routing with high autonomy."
+    },
+    "P13_Compliance": {
+      "label": "Compliance",
+      "v1_tech": 0.4,
+      "v2_skills": 0.7,
+      "v3_cost": 0.9,
+      "v4_time": 0.6,
+      "v5_tools": 0.8,
+      "v6_prompts": 0.5,
+      "v7_research": 1,
+      "v8_tips": 0.9,
+      "v9_risk": 1,
+      "v10_int": 0.3,
+      "v11_agent": 0.2,
+      "note": "Research and risk are both 1.0. Agent weight is 0.2 — legal requires human sign-off. GDPR fine is 4% of global turnover; no agent can carry that liability."
+    },
+    "P14_Scaling": {
+      "label": "Scaling",
+      "v1_tech": 1,
+      "v2_skills": 0.6,
+      "v3_cost": 0.8,
+      "v4_time": 0.7,
+      "v5_tools": 0.7,
+      "v6_prompts": 0.3,
+      "v7_research": 0.9,
+      "v8_tips": 0.8,
+      "v9_risk": 1,
+      "v10_int": 0.7,
+      "v11_agent": 0.6,
+      "note": "Tech and risk are both 1.0 — wrong scaling strategy causes system collapse at the worst moment (launch day). Agent can configure auto-scaling rules but capacity planning needs business context."
+    },
+    "P15_Maintenance": {
+      "label": "Maintenance",
+      "v1_tech": 0.3,
+      "v2_skills": 0.5,
+      "v3_cost": 0.9,
+      "v4_time": 1,
+      "v5_tools": 0.7,
+      "v6_prompts": 0.2,
+      "v7_research": 0.4,
+      "v8_tips": 0.8,
+      "v9_risk": 0.9,
+      "v10_int": 0.4,
+      "v11_agent": 0.7,
+      "note": "Time is the critical vector for maintenance — tech debt compounds daily. Agent can identify tech debt, suggest dependency upgrades and auto-patch known CVEs."
+    },
+    "P16_Sales": {
+      "label": "Sales",
+      "v1_tech": 0.2,
+      "v2_skills": 0.9,
+      "v3_cost": 1,
+      "v4_time": 0.9,
+      "v5_tools": 0.6,
+      "v6_prompts": 0.7,
+      "v7_research": 0.9,
+      "v8_tips": 1,
+      "v9_risk": 0.6,
+      "v10_int": 0.4,
+      "v11_agent": 0.4,
+      "note": "Cost and tips are both 1.0 — sales is about economics and hard-won wisdom. Agent can draft proposals and analyse pipeline data but cannot build relationships or close deals."
+    },
+    "P17_Marketing": {
+      "label": "Marketing",
+      "v1_tech": 0.6,
+      "v2_skills": 0.8,
+      "v3_cost": 0.9,
+      "v4_time": 0.7,
+      "v5_tools": 0.9,
+      "v6_prompts": 1,
+      "v7_research": 0.8,
+      "v8_tips": 0.7,
+      "v9_risk": 0.4,
+      "v10_int": 0.5,
+      "v11_agent": 0.8,
+      "note": "Prompts are mandatory — AI generates ad copy, social posts, SEO content and email campaigns. Agent weight is high because content generation is a core agent capability."
+    },
+    "P18_Documentation": {
+      "label": "Documentation",
+      "v1_tech": 0.6,
+      "v2_skills": 0.8,
+      "v3_cost": 0.4,
+      "v4_time": 0.9,
+      "v5_tools": 1,
+      "v6_prompts": 1,
+      "v7_research": 0.3,
+      "v8_tips": 0.9,
+      "v9_risk": 0.6,
+      "v10_int": 0.7,
+      "v11_agent": 0.9,
+      "note": "Tools and prompts are both 1.0. Agent can auto-generate API docs, runbooks and user guides from code and schema. Time is 0.9 — documentation is always the last thing and always underestimated."
+    },
+    "P19_Integration": {
+      "label": "Integration",
+      "v1_tech": 1,
+      "v2_skills": 0.9,
+      "v3_cost": 0.8,
+      "v4_time": 0.9,
+      "v5_tools": 0.9,
+      "v6_prompts": 0.6,
+      "v7_research": 0.7,
+      "v8_tips": 0.9,
+      "v9_risk": 1,
+      "v10_int": 1,
+      "v11_agent": 0.5,
+      "note": "Risk and integration are both 1.0 — broken integrations are the #1 cause of production incidents. Three near-1.0 vectors (tech, skills, time) reflect real-world integration pain. Legacy connectors take 2-3x longer than estimated every time."
+    },
+    "P20_Architecture": {
+      "label": "Architecture",
+      "v1_tech": 0.9,
+      "v2_skills": 1,
+      "v3_cost": 0.8,
+      "v4_time": 0.8,
+      "v5_tools": 0.7,
+      "v6_prompts": 0.5,
+      "v7_research": 1,
+      "v8_tips": 1,
+      "v9_risk": 1,
+      "v10_int": 0.9,
+      "v11_agent": 0.3,
+      "note": "Four 1.0 or near-1.0 vectors — skills, research, tips, risk. Wrong architecture is the single most expensive mistake in software. Agent weight is 0.3 — agent suggests patterns, humans decide. ADRs must be human-approved."
+    },
+    "P21_ChangeManagement": {
+      "label": "Change Management",
+      "v1_tech": 0.1,
+      "v2_skills": 1,
+      "v3_cost": 0.8,
+      "v4_time": 1,
+      "v5_tools": 0.5,
+      "v6_prompts": 0.6,
+      "v7_research": 0.8,
+      "v8_tips": 1,
+      "v9_risk": 1,
+      "v10_int": 0.2,
+      "v11_agent": 0.2,
+      "note": "Four 1.0 vectors — skills, time, tips, risk. 70% of digital transformations fail due to change management, not technical failure. Time cannot be compressed — culture moves slowly. Agent weight is 0.2 — agent drafts communications but cannot lead human change."
+    },
+    "P22_FinancialGovernance": {
+      "label": "Financial Governance",
+      "v1_tech": 0.3,
+      "v2_skills": 0.9,
+      "v3_cost": 1,
+      "v4_time": 0.8,
+      "v5_tools": 0.8,
+      "v6_prompts": 0.5,
+      "v7_research": 0.9,
+      "v8_tips": 0.9,
+      "v9_risk": 1,
+      "v10_int": 0.4,
+      "v11_agent": 0.5,
+      "note": "Cost and risk are both 1.0 — running out of money at 80% complete is a leading cause of project failure. Agent models cost scenarios and tracks burn rate; humans make financial decisions and approve spend."
+    },
+    "P23_Observability": {
+      "label": "Observability",
+      "v1_tech": 0.7,
+      "v2_skills": 0.9,
+      "v3_cost": 0.9,
+      "v4_time": 0.6,
+      "v5_tools": 1,
+      "v6_prompts": 0.4,
+      "v7_research": 0.7,
+      "v8_tips": 0.9,
+      "v9_risk": 1,
+      "v10_int": 0.8,
+      "v11_agent": 0.7,
+      "v12_patterns": 0.6,
+      "note": "Observability is infrastructure table stakes at 1k-10k scale and up. Weight heavy on tools + risk + cost (the big procurement decisions); lighter on prompts + agents (those are enabling, not deciding)."
+    }
+  },
+  "switchboard_defaults": {
+    "P01_Strategy": {
+      "new": true,
+      "existing": true
+    },
+    "P02_Experience": {
+      "new": true,
+      "existing": true
+    },
+    "P03_Code": {
+      "new": true,
+      "existing": true
+    },
+    "P04_Database": {
+      "new": true,
+      "existing": true
+    },
+    "P05_Content": {
+      "new": true,
+      "existing": true
+    },
+    "P06_Hardware": {
+      "new": true,
+      "existing": true
+    },
+    "P07_Pattern": {
+      "new": false,
+      "existing": false
+    },
+    "P08_Testing": {
+      "new": true,
+      "existing": true
+    },
+    "P09_Deployment": {
+      "new": true,
+      "existing": true
+    },
+    "P10_Security": {
+      "new": true,
+      "existing": true
+    },
+    "P11_Actors": {
+      "new": true,
+      "existing": true
+    },
+    "P12_Support": {
+      "new": false,
+      "existing": true
+    },
+    "P13_Compliance": {
+      "new": false,
+      "existing": false
+    },
+    "P14_Scaling": {
+      "new": false,
+      "existing": false
+    },
+    "P15_Maintenance": {
+      "new": false,
+      "existing": true
+    },
+    "P16_Sales": {
+      "new": false,
+      "existing": false
+    },
+    "P17_Marketing": {
+      "new": false,
+      "existing": false
+    },
+    "P18_Documentation": {
+      "new": true,
+      "existing": true
+    },
+    "P19_Integration": {
+      "new": false,
+      "existing": false
+    },
+    "P20_Architecture": {
+      "new": true,
+      "existing": true
+    },
+    "P21_ChangeManagement": {
+      "new": false,
+      "existing": true
+    },
+    "P22_FinancialGovernance": {
+      "new": false,
+      "existing": false
+    }
+  },
+  "switchboard_triggers": {
+    "P07_Pattern": "budget_tier >= L2 OR has_ai_requirement == true",
+    "P12_Support": "scale > 1000 OR project_status == existing",
+    "P13_Compliance": "industry IN [education, finance, health, legal] OR scale > 5000",
+    "P14_Scaling": "scale > 5000 OR growth_projection == high OR budget_tier >= L3",
+    "P15_Maintenance": "project_status == existing OR budget_tier >= L2",
+    "P16_Sales": "monetisation == true OR has_ecommerce == true",
+    "P17_Marketing": "audience_type == public OR budget_tier >= L2",
+    "P19_Integration": "third_party_count > 0 OR project_status == existing",
+    "P21_ChangeManagement": "project_status == existing OR team_size > 10 OR budget > 50000",
+    "P22_FinancialGovernance": "budget > 10000 OR project_duration_months > 3 OR budget_tier >= L2"
+  }
+}
