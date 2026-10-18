@@ -84,13 +84,16 @@ async function usages(all: CollectionDef[], collection: string, id: string) {
 export const referencedBy = (collection: string, id: string) => withLock(async () => usages(await defs(), collection, id));
 
 /** Every ref/refs value must name a record that exists. */
-async function checkRefs(def: CollectionDef, fields: Record<string, unknown>, all: CollectionDef[]) {
+async function checkRefs(
+  def: CollectionDef, fields: Record<string, unknown>, all: CollectionDef[],
+  idsOf: (collection: string) => Promise<Set<string>> = async (c) => new Set((await records(c)).map((r) => r.id)),
+) {
   for (const f of def.fields) {
     const v = fields[f.key];
     if (v === undefined || (f.type !== "ref" && f.type !== "refs")) continue;
     const target = f.ref!;
     if (!all.some((d) => d.id === target)) throw new LabError(`${f.label}: collection "${target}" does not exist.`);
-    const have = new Set((await records(target)).map((r) => r.id));
+    const have = await idsOf(target);
     for (const id of f.type === "ref" ? [v as string] : (v as string[])) {
       if (!have.has(id)) throw new LabError(`${f.label}: "${id}" is not in ${target}.`);
     }
@@ -157,4 +160,80 @@ export const exportLab = () =>
     const data: Record<string, LabRecord[]> = {};
     for (const d of all) data[d.id] = await records(d.id);
     return { exportedAt: new Date().toISOString(), version: 1, collections: data };
+  });
+
+export type ImportSummary = Record<string, { created: number; updated: number }>;
+
+/**
+ * Merges an export (see exportLab) into the lab: records are matched by id, new ones are added, existing
+ * ones are replaced and their revision bumped. Nothing is removed. Everything is checked against the merged
+ * schema and links before anything is written, so a bad file changes nothing. `dryRun` checks and reports only.
+ */
+export const importLab = (doc: unknown, dryRun = false) =>
+  withLock(async () => {
+    const root = doc as { collections?: Record<string, unknown> } | null;
+    const incoming = root?.collections;
+    if (!incoming || typeof incoming !== "object" || Array.isArray(incoming)) throw new LabError("This is not a lab export: it has no \"collections\" object.");
+    for (const [c, list] of Object.entries(incoming)) if (!Array.isArray(list)) throw new LabError(`${c}: must be a list of records.`);
+
+    const now = new Date().toISOString();
+    const state = new Map<string, LabRecord[]>();
+    const load = async (c: string) => { if (!state.has(c)) state.set(c, await records(c)); return state.get(c)!; };
+    const changed = new Set<string>();
+    const summary: ImportSummary = {};
+    const imported: { def: CollectionDef; fields: Record<string, unknown>; at: string }[] = [];
+
+    // upsert returns the stored record; `legacy` lets an updated record keep fields the schema no longer lists.
+    const upsert = async (def: CollectionDef, raw: unknown, where: string) => {
+      const r = raw as Record<string, unknown> | null;
+      if (!r || typeof r !== "object" || Array.isArray(r)) throw new LabError(`${where}: must be an object.`);
+      const id = r.id;
+      if (typeof id !== "string" || !ID_RE.test(id)) throw new LabError(`${where}: missing or invalid id.`);
+      const list = await load(def.id);
+      const current = list.find((x) => x.id === id);
+      let fields: Record<string, unknown>;
+      try {
+        fields = normalize(def, r, current ? Object.keys(current).filter((k) => !SYSTEM_KEYS.includes(k)) : []);
+      } catch (e) {
+        if (e instanceof LabError) throw new LabError(`${where}: ${e.message}`);
+        throw e;
+      }
+      const rec: LabRecord = current
+        ? { id, createdAt: current.createdAt, updatedAt: now, rev: (current.rev ?? 1) + 1, ...fields }
+        : { id, createdAt: typeof r.createdAt === "string" ? r.createdAt : now, updatedAt: now, rev: 1, ...fields };
+      state.set(def.id, current ? list.map((x) => (x.id === id ? rec : x)) : [...list, rec]);
+      changed.add(def.id);
+      const s = (summary[def.id] ??= { created: 0, updated: 0 });
+      if (current) s.updated++; else s.created++;
+      return { rec, fields };
+    };
+
+    // Schema first: the incoming definitions decide what the other collections may hold.
+    for (const [i, raw] of ((incoming.schema as unknown[]) ?? []).entries()) {
+      const { rec } = await upsert(SCHEMA_DEF, raw, `schema[${i}]`);
+      try { Object.assign(rec, validateDef({ ...rec })); } catch (e) {
+        if (e instanceof LabError) throw new LabError(`schema[${i}]: ${e.message}`);
+        throw e;
+      }
+    }
+    const all = [...(await load("schema")).map((r) => validateDef({ ...r })), SCHEMA_DEF];
+    for (const [c, list] of Object.entries(incoming)) {
+      if (c === "schema") continue;
+      const def = all.find((d) => d.id === c);
+      if (!def) throw new LabError(`${c}: no such collection. Include its definition under "schema".`);
+      for (const [i, raw] of (list as unknown[]).entries()) {
+        const { fields } = await upsert(def, raw, `${c}[${i}]`);
+        imported.push({ def, fields, at: `${c}[${i}]` });
+      }
+    }
+    for (const c of changed) await load(c);
+    const ids = new Map([...state].map(([c, list]) => [c, new Set(list.map((r) => r.id))]));
+    for (const { def, fields, at } of imported) {
+      try { await checkRefs(def, fields, all, async (c) => ids.get(c) ?? new Set((await records(c)).map((r) => r.id))); } catch (e) {
+        if (e instanceof LabError) throw new LabError(`${at}: ${e.message}`);
+        throw e;
+      }
+    }
+    if (!dryRun) for (const c of changed) await writeFile(c, state.get(c)!);
+    return summary;
   });

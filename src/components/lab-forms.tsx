@@ -1,19 +1,20 @@
 "use client";
 import { useActionState } from "react";
 import { Banner, Button, Field } from "@gg/ui";
-import { removeRecord, saveFromForm, saveFromJson } from "@/app/actions/lab";
+import { importFromFile, removeRecord, saveFromForm, saveFromJson } from "@/app/actions/lab";
 import type { CollectionDef, FieldDef } from "@/lib/lab-schema";
 
 export type Choices = Record<string, { id: string; title: string }[]>;
 type Rec = Record<string, unknown> | null;
 
+const asJson = (v: unknown) => (v === undefined ? "" : JSON.stringify(v, null, 2));
 const asText = (v: unknown) => (typeof v === "string" ? v : v === undefined || v === null ? "" : JSON.stringify(v, null, 2));
 
 function Control({ f, value, choices }: { f: FieldDef; value: unknown; choices: Choices }) {
   const name = `f:${f.key}`;
   switch (f.type) {
     case "longtext": return <textarea name={name} rows={5} defaultValue={asText(value)} required={f.required} />;
-    case "json": return <textarea name={name} rows={8} spellCheck={false} defaultValue={asText(value)} required={f.required} style={{ fontFamily: "ui-monospace, monospace", fontSize: 12 }} />;
+    case "json": return <textarea name={name} rows={8} spellCheck={false} defaultValue={asJson(value)} required={f.required} style={{ fontFamily: "ui-monospace, monospace", fontSize: 12 }} />;
     case "number": return <input type="number" name={name} step="any" defaultValue={typeof value === "number" ? value : ""} required={f.required} />;
     case "boolean": return <input type="checkbox" name={name} defaultChecked={value === true} />;
     case "select":
@@ -101,6 +102,27 @@ export function DeleteButton({ collection, id, title }: { collection: string; id
         <Button variant="danger" type="submit" disabled={pending}
           onClick={(e) => { if (!confirm(`Delete "${title}"? This cannot be undone.`)) e.preventDefault(); }}>Delete</Button>
       </div>
+    </form>
+  );
+}
+
+export function ImportForm() {
+  const [state, action, pending] = useActionState(importFromFile, undefined);
+  const rows = state?.summary ? Object.entries(state.summary) : [];
+  return (
+    <form action={action} style={{ display: "grid", gap: 10 }}>
+      {state?.error && <Banner tone="danger" icon="alert">{state.error}</Banner>}
+      {state?.summary && (
+        <Banner tone="ok" icon="check">
+          {state.dryRun ? "Looks good, nothing written. " : "Imported. "}
+          {rows.length === 0 ? "No records in the file." : rows.map(([c, n]) => `${c}: ${n.created} new, ${n.updated} updated`).join(" · ")}
+        </Banner>
+      )}
+      <Field label="Exported lab file" hint="Records are matched by id: new ones are added, existing ones replaced. Nothing is deleted. A file with any problem changes nothing.">
+        <input type="file" name="file" accept="application/json,.json" required />
+      </Field>
+      <label style={{ display: "flex", gap: 8, alignItems: "center" }}><input type="checkbox" name="dryRun" defaultChecked /> Check only, do not write</label>
+      <div><Button variant="primary" type="submit" disabled={pending}>{pending ? "Working…" : "Import"}</Button></div>
     </form>
   );
 }

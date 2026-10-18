@@ -1,9 +1,10 @@
 import { LinkButton, PageHeader, Section, StatTile, Stats } from "@gg/ui";
+import { ImportForm } from "@/components/lab-forms";
 import { requireSession } from "@/lib/auth";
 import { listCollections, listRecords } from "@/lib/lab";
 
 export default async function LabHome() {
-  await requireSession();
+  const { user } = await requireSession();
   const defs = await listCollections();
   const counts = await Promise.all(defs.map(async (d) => (await listRecords(d.id)).length));
   return (
@@ -23,6 +24,7 @@ export default async function LabHome() {
         </ol>
         <p style={{ margin: "12px 0 0" }}><LinkButton href="/admin/lab/patterns/new" variant="primary">New pattern</LinkButton></p>
       </Section>
+      {user.role === "admin" && <Section title="Import" icon="download" subtitle="Bring in a file from Export, for example from another lab."><ImportForm /></Section>}
     </>
   );
 }

@@ -139,10 +139,8 @@ function coerce(f: FieldDef, v: unknown): unknown {
     case "ref":
       if (typeof v !== "string") throw bad("must be a record id.");
       return v.trim();
-    case "json": {
-      if (typeof v !== "string") return v;
-      try { return JSON.parse(v); } catch { throw bad("is not valid JSON."); }
-    }
+    case "json":
+      return v; // already a JSON value; the form action parses what was typed
   }
 }
 

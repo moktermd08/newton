@@ -86,3 +86,49 @@ test("export holds every collection", async () => {
   assert.equal(Object.keys(out.collections).length, 9);
   assert.ok(out.collections.patterns.length >= 3);
 });
+
+test("import merges by id, bumps rev on existing, adds new, and survives a round trip", async () => {
+  fresh();
+  const out = await lab.exportLab();
+  const before = (await lab.getRecord("patterns", "lightweight-prd"))!;
+  out.collections.patterns[0] = { ...out.collections.patterns[0], confidence: 90 };
+  out.collections.functions.push({ id: "chaos-testing", createdAt: "2026-01-01T00:00:00.000Z", updatedAt: "x", rev: 1, name: "Chaos testing", zone: "Operate" });
+  const summary = await lab.importLab(out);
+  assert.deepEqual(summary.functions, { created: 1, updated: 6 });
+  assert.equal(summary.patterns.updated, 3);
+  const after = (await lab.getRecord("patterns", "lightweight-prd"))!;
+  assert.equal(after.confidence, 90);
+  assert.equal(after.rev, before.rev + 1);
+  assert.equal((await lab.getRecord("functions", "chaos-testing"))!.createdAt, "2026-01-01T00:00:00.000Z");
+});
+
+test("import is all or nothing: a bad record, unknown collection or dangling link writes nothing", async () => {
+  fresh();
+  const good = { id: "ok-one", name: "Fine", zone: "Build" };
+  const bad = (collections: Record<string, unknown[]>) => lab.importLab({ collections });
+  await rejects(bad({ functions: [good, { id: "bad-one", name: "Bad", zone: "Moon" }] }), /functions\[1\]: Zone: must be one of/);
+  await rejects(bad({ nope: [good] }), /nope: no such collection/);
+  await rejects(bad({ patterns: [{ id: "p2", name: "P", status: "idea", problem: "x", functions: ["ghost"] }] }), /patterns\[0\]: Functions: "ghost" is not in functions/);
+  await rejects(lab.importLab({ nothing: true }), /not a lab export/);
+  assert.equal(await lab.getRecord("functions", "ok-one"), null);
+  assert.equal((await lab.listRecords("patterns")).length, 3);
+});
+
+test("import can bring a new collection with its records, and dry run writes nothing", async () => {
+  fresh();
+  const doc = { collections: {
+    schema: [{ id: "metrics", label: "Metrics", fields: [{ key: "name", label: "Name", type: "text", required: true }] }],
+    metrics: [{ id: "lead-time", name: "Lead time" }],
+  } };
+  assert.deepEqual(await lab.importLab(doc, true), { schema: { created: 1, updated: 0 }, metrics: { created: 1, updated: 0 } });
+  assert.equal((await lab.listCollections()).length, 9);
+  await lab.importLab(doc);
+  assert.equal((await lab.listRecords("metrics")).length, 1);
+});
+
+test("a json field can hold a plain string or a number, not only objects", async () => {
+  fresh();
+  const rec = await lab.saveRecord("configuration", { name: "region", scope: "global", value: "eu-west-1" });
+  assert.equal(rec.value, "eu-west-1");
+  assert.equal((await lab.saveRecord("configuration", { name: "region", scope: "global", value: 0 }, rec.id)).value, 0);
+});
