@@ -1,0 +1,25 @@
+{
+  "records": [
+    {
+      "id": "requirements-analyst",
+      "createdAt": "2026-10-18T00:00:00.000Z",
+      "updatedAt": "2026-10-18T00:00:00.000Z",
+      "rev": 1,
+      "name": "Requirements analyst",
+      "role": "Drafts PRDs",
+      "goal": "Turn a rough idea into a filled PRD one-pager and list the open questions.",
+      "instructions": "Use the PRD template. Never invent facts; mark unknowns as questions.",
+      "model": "claude-sonnet-5-5",
+      "functions": [
+        "requirements-capture"
+      ],
+      "patterns": [
+        "lightweight-prd"
+      ],
+      "tools": [
+        "read-only"
+      ],
+      "enabled": true
+    }
+  ]
+}

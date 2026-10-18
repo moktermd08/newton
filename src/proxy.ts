@@ -15,4 +15,4 @@ export function proxy(request: NextRequest) {
   return NextResponse.redirect(login);
 }
 
-export const config = { matcher: ["/admin/:path*", "/api/lifecycle/:path*", "/api/lifecycle"] };
+export const config = { matcher: ["/admin/:path*", "/api/lifecycle/:path*", "/api/lifecycle", "/api/lab/:path*"] };

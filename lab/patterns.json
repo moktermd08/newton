@@ -1,0 +1,54 @@
+{
+  "records": [
+    {
+      "id": "lightweight-prd",
+      "createdAt": "2026-10-18T00:00:00.000Z",
+      "updatedAt": "2026-10-18T00:00:00.000Z",
+      "rev": 1,
+      "name": "Lightweight PRD",
+      "status": "trial",
+      "problem": "Teams start building from a chat message and discover the real requirement late.",
+      "solution": "Write a one-page PRD, get one reviewer, and only then open the first ticket.",
+      "functions": [
+        "requirements-capture"
+      ],
+      "template": "prd-one-pager",
+      "confidence": 40,
+      "tags": [
+        "early",
+        "low-cost"
+      ]
+    },
+    {
+      "id": "risk-gated-release",
+      "createdAt": "2026-10-18T00:00:00.000Z",
+      "updatedAt": "2026-10-18T00:00:00.000Z",
+      "rev": 1,
+      "name": "Risk-gated release",
+      "status": "idea",
+      "problem": "Releases ship on a feeling rather than a check.",
+      "solution": "Score each release against a short checklist; below the threshold it waits.",
+      "functions": [
+        "release-gating",
+        "ci-pipeline"
+      ],
+      "template": "release-checklist",
+      "confidence": 25
+    },
+    {
+      "id": "blameless-postmortem",
+      "createdAt": "2026-10-18T00:00:00.000Z",
+      "updatedAt": "2026-10-18T00:00:00.000Z",
+      "rev": 1,
+      "name": "Blameless postmortem",
+      "status": "proven",
+      "problem": "The same incident repeats because nobody wrote down why it happened.",
+      "solution": "Within 3 days of any incident, hold a short review and publish the postmortem.",
+      "functions": [
+        "incident-response"
+      ],
+      "template": "postmortem",
+      "confidence": 80
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "records": [
+    {
+      "id": "prd-run-1",
+      "createdAt": "2026-10-18T00:00:00.000Z",
+      "updatedAt": "2026-10-18T00:00:00.000Z",
+      "rev": 1,
+      "name": "First run of the lightweight PRD",
+      "pattern": "lightweight-prd",
+      "journey": "mvp-to-first-customer",
+      "rating": 4,
+      "outcome": "worked",
+      "learning": "The 'out of scope' section prevented two arguments. 'Who has it' was usually left blank.",
+      "action": "Make 'Who has it' required in the template.",
+      "status": "open"
+    }
+  ]
+}

@@ -1,0 +1,412 @@
+{
+  "records": [
+    {
+      "id": "functions",
+      "createdAt": "2026-10-18T00:00:00.000Z",
+      "updatedAt": "2026-10-18T00:00:00.000Z",
+      "rev": 1,
+      "label": "Functions",
+      "description": "A unit of lifecycle work: something a team does, placed in a lifecycle zone.",
+      "icon": "layers",
+      "titleKey": "name",
+      "fields": [
+        {
+          "key": "name",
+          "label": "Name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "key": "zone",
+          "label": "Zone",
+          "type": "select",
+          "required": true,
+          "options": [
+            "Discover",
+            "Define",
+            "Design",
+            "Build",
+            "Release",
+            "Operate",
+            "Retire"
+          ]
+        },
+        {
+          "key": "pillar",
+          "label": "Pillar",
+          "type": "text",
+          "hint": "Matches a pillar in engine/data/lifecycle-map.json, e.g. Security."
+        },
+        {
+          "key": "summary",
+          "label": "Summary",
+          "type": "longtext"
+        },
+        {
+          "key": "tags",
+          "label": "Tags",
+          "type": "tags"
+        }
+      ]
+    },
+    {
+      "id": "patterns",
+      "createdAt": "2026-10-18T00:00:00.000Z",
+      "updatedAt": "2026-10-18T00:00:00.000Z",
+      "rev": 1,
+      "label": "Patterns",
+      "description": "A reusable way of doing one or more functions. Start as an idea, prove it with feedback, then promote it.",
+      "icon": "flask",
+      "titleKey": "name",
+      "fields": [
+        {
+          "key": "name",
+          "label": "Name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "key": "status",
+          "label": "Status",
+          "type": "select",
+          "required": true,
+          "options": [
+            "idea",
+            "trial",
+            "proven",
+            "retired"
+          ]
+        },
+        {
+          "key": "problem",
+          "label": "Problem",
+          "type": "longtext",
+          "required": true
+        },
+        {
+          "key": "solution",
+          "label": "Solution",
+          "type": "longtext"
+        },
+        {
+          "key": "functions",
+          "label": "Functions",
+          "type": "refs",
+          "ref": "functions"
+        },
+        {
+          "key": "template",
+          "label": "Template",
+          "type": "ref",
+          "ref": "templates"
+        },
+        {
+          "key": "confidence",
+          "label": "Confidence (0-100)",
+          "type": "number",
+          "hint": "How sure are we it works? Raise it as feedback comes in."
+        },
+        {
+          "key": "tags",
+          "label": "Tags",
+          "type": "tags"
+        }
+      ]
+    },
+    {
+      "id": "journeys",
+      "createdAt": "2026-10-18T00:00:00.000Z",
+      "updatedAt": "2026-10-18T00:00:00.000Z",
+      "rev": 1,
+      "label": "Journeys",
+      "description": "An ordered path through patterns for one kind of project.",
+      "icon": "arrow",
+      "titleKey": "name",
+      "fields": [
+        {
+          "key": "name",
+          "label": "Name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "key": "audience",
+          "label": "Audience",
+          "type": "text"
+        },
+        {
+          "key": "goal",
+          "label": "Goal",
+          "type": "longtext"
+        },
+        {
+          "key": "steps",
+          "label": "Patterns in order",
+          "type": "refs",
+          "ref": "patterns",
+          "hint": "Order is kept as listed."
+        },
+        {
+          "key": "notes",
+          "label": "Notes",
+          "type": "longtext"
+        }
+      ]
+    },
+    {
+      "id": "templates",
+      "createdAt": "2026-10-18T00:00:00.000Z",
+      "updatedAt": "2026-10-18T00:00:00.000Z",
+      "rev": 1,
+      "label": "Templates",
+      "description": "Documents, checklists and prompts that patterns hand out.",
+      "icon": "table",
+      "titleKey": "name",
+      "fields": [
+        {
+          "key": "name",
+          "label": "Name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "key": "kind",
+          "label": "Kind",
+          "type": "select",
+          "required": true,
+          "options": [
+            "document",
+            "checklist",
+            "prompt",
+            "config"
+          ]
+        },
+        {
+          "key": "function",
+          "label": "Function",
+          "type": "ref",
+          "ref": "functions"
+        },
+        {
+          "key": "body",
+          "label": "Body",
+          "type": "longtext",
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "configuration",
+      "createdAt": "2026-10-18T00:00:00.000Z",
+      "updatedAt": "2026-10-18T00:00:00.000Z",
+      "rev": 1,
+      "label": "Configuration",
+      "description": "Settings the lab and its agents read. Values are JSON.",
+      "icon": "shield",
+      "titleKey": "name",
+      "fields": [
+        {
+          "key": "name",
+          "label": "Key",
+          "type": "text",
+          "required": true
+        },
+        {
+          "key": "scope",
+          "label": "Scope",
+          "type": "select",
+          "required": true,
+          "options": [
+            "global",
+            "pattern",
+            "journey",
+            "agent"
+          ]
+        },
+        {
+          "key": "value",
+          "label": "Value",
+          "type": "json",
+          "required": true
+        },
+        {
+          "key": "description",
+          "label": "Description",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "feedback",
+      "createdAt": "2026-10-18T00:00:00.000Z",
+      "updatedAt": "2026-10-18T00:00:00.000Z",
+      "rev": 1,
+      "label": "Feedback & Learning",
+      "description": "What happened when a pattern or journey was used, and what to change because of it.",
+      "icon": "heart",
+      "titleKey": "name",
+      "fields": [
+        {
+          "key": "name",
+          "label": "Title",
+          "type": "text",
+          "required": true
+        },
+        {
+          "key": "pattern",
+          "label": "Pattern",
+          "type": "ref",
+          "ref": "patterns"
+        },
+        {
+          "key": "journey",
+          "label": "Journey",
+          "type": "ref",
+          "ref": "journeys"
+        },
+        {
+          "key": "rating",
+          "label": "Rating (1-5)",
+          "type": "number"
+        },
+        {
+          "key": "outcome",
+          "label": "Outcome",
+          "type": "select",
+          "required": true,
+          "options": [
+            "worked",
+            "partly",
+            "failed"
+          ]
+        },
+        {
+          "key": "learning",
+          "label": "Learning",
+          "type": "longtext"
+        },
+        {
+          "key": "action",
+          "label": "Change to make",
+          "type": "longtext"
+        },
+        {
+          "key": "status",
+          "label": "Status",
+          "type": "select",
+          "required": true,
+          "options": [
+            "open",
+            "applied",
+            "dismissed"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "agents",
+      "createdAt": "2026-10-18T00:00:00.000Z",
+      "updatedAt": "2026-10-18T00:00:00.000Z",
+      "rev": 1,
+      "label": "Agents",
+      "description": "AI agents that carry out functions using patterns.",
+      "icon": "bot",
+      "titleKey": "name",
+      "fields": [
+        {
+          "key": "name",
+          "label": "Name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "key": "role",
+          "label": "Role",
+          "type": "text"
+        },
+        {
+          "key": "goal",
+          "label": "Goal",
+          "type": "longtext"
+        },
+        {
+          "key": "instructions",
+          "label": "Instructions",
+          "type": "longtext"
+        },
+        {
+          "key": "model",
+          "label": "Model",
+          "type": "text"
+        },
+        {
+          "key": "functions",
+          "label": "Functions",
+          "type": "refs",
+          "ref": "functions"
+        },
+        {
+          "key": "patterns",
+          "label": "Patterns",
+          "type": "refs",
+          "ref": "patterns"
+        },
+        {
+          "key": "tools",
+          "label": "Tools",
+          "type": "tags"
+        },
+        {
+          "key": "enabled",
+          "label": "Enabled",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "id": "data",
+      "createdAt": "2026-10-18T00:00:00.000Z",
+      "updatedAt": "2026-10-18T00:00:00.000Z",
+      "rev": 1,
+      "label": "Data",
+      "description": "Small sample datasets for trying patterns and agents before they touch live data.",
+      "icon": "database",
+      "titleKey": "name",
+      "fields": [
+        {
+          "key": "name",
+          "label": "Name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "key": "kind",
+          "label": "Kind",
+          "type": "select",
+          "required": true,
+          "options": [
+            "sample",
+            "fixture",
+            "reference"
+          ]
+        },
+        {
+          "key": "description",
+          "label": "Description",
+          "type": "text"
+        },
+        {
+          "key": "source",
+          "label": "Source",
+          "type": "text"
+        },
+        {
+          "key": "content",
+          "label": "Content",
+          "type": "json",
+          "required": true
+        }
+      ]
+    }
+  ]
+}

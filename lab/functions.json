@@ -1,0 +1,64 @@
+{
+  "records": [
+    {
+      "id": "requirements-capture",
+      "createdAt": "2026-10-18T00:00:00.000Z",
+      "updatedAt": "2026-10-18T00:00:00.000Z",
+      "rev": 1,
+      "name": "Requirements capture",
+      "zone": "Define",
+      "pillar": "Strategy",
+      "summary": "Turn a vague need into written, testable requirements."
+    },
+    {
+      "id": "threat-modelling",
+      "createdAt": "2026-10-18T00:00:00.000Z",
+      "updatedAt": "2026-10-18T00:00:00.000Z",
+      "rev": 1,
+      "name": "Threat modelling",
+      "zone": "Design",
+      "pillar": "Security",
+      "summary": "List what could go wrong before it is built."
+    },
+    {
+      "id": "ci-pipeline",
+      "createdAt": "2026-10-18T00:00:00.000Z",
+      "updatedAt": "2026-10-18T00:00:00.000Z",
+      "rev": 1,
+      "name": "CI pipeline",
+      "zone": "Build",
+      "pillar": "Deployment / DevOps",
+      "summary": "Build and test every change automatically."
+    },
+    {
+      "id": "release-gating",
+      "createdAt": "2026-10-18T00:00:00.000Z",
+      "updatedAt": "2026-10-18T00:00:00.000Z",
+      "rev": 1,
+      "name": "Release gating",
+      "zone": "Release",
+      "pillar": "Testing",
+      "summary": "Decide from evidence whether a build may ship."
+    },
+    {
+      "id": "incident-response",
+      "createdAt": "2026-10-18T00:00:00.000Z",
+      "updatedAt": "2026-10-18T00:00:00.000Z",
+      "rev": 1,
+      "name": "Incident response",
+      "zone": "Operate",
+      "pillar": "Support / Observability",
+      "summary": "Detect, fix and learn from production problems."
+    },
+    {
+      "id": "decommissioning",
+      "createdAt": "2026-10-18T00:00:00.000Z",
+      "updatedAt": "2026-10-18T00:00:00.000Z",
+      "rev": 1,
+      "name": "Decommissioning",
+      "zone": "Retire",
+      "pillar": "Maintenance",
+      "summary": "Shut a system down without losing data or users."
+    }
+  ]
+}

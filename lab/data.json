@@ -1,0 +1,18 @@
+{
+  "records": [
+    {
+      "id": "sample-idea",
+      "createdAt": "2026-10-18T00:00:00.000Z",
+      "updatedAt": "2026-10-18T00:00:00.000Z",
+      "rev": 1,
+      "name": "Sample product idea",
+      "kind": "sample",
+      "description": "A made-up input for trying the requirements analyst.",
+      "source": "hand-written",
+      "content": {
+        "title": "Invoice reminders",
+        "rough": "Customers forget to pay. Send them nudges. Maybe SMS?"
+      }
+    }
+  ]
+}

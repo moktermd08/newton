@@ -1,0 +1,34 @@
+{
+  "records": [
+    {
+      "id": "prd-one-pager",
+      "createdAt": "2026-10-18T00:00:00.000Z",
+      "updatedAt": "2026-10-18T00:00:00.000Z",
+      "rev": 1,
+      "name": "PRD one-pager",
+      "kind": "document",
+      "function": "requirements-capture",
+      "body": "# Problem\n\n# Who has it\n\n# What done looks like\n\n# Out of scope\n"
+    },
+    {
+      "id": "release-checklist",
+      "createdAt": "2026-10-18T00:00:00.000Z",
+      "updatedAt": "2026-10-18T00:00:00.000Z",
+      "rev": 1,
+      "name": "Release checklist",
+      "kind": "checklist",
+      "function": "release-gating",
+      "body": "- [ ] Tests green\n- [ ] Migration reviewed\n- [ ] Rollback tried\n- [ ] Owner on call"
+    },
+    {
+      "id": "postmortem",
+      "createdAt": "2026-10-18T00:00:00.000Z",
+      "updatedAt": "2026-10-18T00:00:00.000Z",
+      "rev": 1,
+      "name": "Blameless postmortem",
+      "kind": "document",
+      "function": "incident-response",
+      "body": "# What happened\n\n# Impact\n\n# Timeline\n\n# Why it happened\n\n# What we change\n"
+    }
+  ]
+}

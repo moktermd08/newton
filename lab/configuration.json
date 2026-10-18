@@ -1,0 +1,24 @@
+{
+  "records": [
+    {
+      "id": "default-model",
+      "createdAt": "2026-10-18T00:00:00.000Z",
+      "updatedAt": "2026-10-18T00:00:00.000Z",
+      "rev": 1,
+      "name": "default-model",
+      "scope": "agent",
+      "value": "claude-sonnet-5-5",
+      "description": "Model agents use unless they name their own."
+    },
+    {
+      "id": "proven-threshold",
+      "createdAt": "2026-10-18T00:00:00.000Z",
+      "updatedAt": "2026-10-18T00:00:00.000Z",
+      "rev": 1,
+      "name": "proven-threshold",
+      "scope": "pattern",
+      "value": 75,
+      "description": "Confidence at or above this counts a pattern as ready for the live platform."
+    }
+  ]
+}

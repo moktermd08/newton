@@ -1,0 +1,19 @@
+{
+  "records": [
+    {
+      "id": "mvp-to-first-customer",
+      "createdAt": "2026-10-18T00:00:00.000Z",
+      "updatedAt": "2026-10-18T00:00:00.000Z",
+      "rev": 1,
+      "name": "MVP to first customer",
+      "audience": "Small team, new product",
+      "goal": "Ship something real to one paying customer with the least process that is still safe.",
+      "steps": [
+        "lightweight-prd",
+        "risk-gated-release",
+        "blameless-postmortem"
+      ],
+      "notes": "Add threat modelling once there is customer data."
+    }
+  ]
+}
