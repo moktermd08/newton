@@ -19,7 +19,8 @@
       "tools": [
         "read-only"
       ],
-      "enabled": true
+      "enabled": true,
+      "effort": "medium"
     }
   ]
 }

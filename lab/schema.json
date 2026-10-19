@@ -337,7 +337,33 @@
         {
           "key": "model",
           "label": "Model",
-          "type": "text"
+          "type": "select",
+          "options": [
+            "claude-sonnet-5-5",
+            "claude-opus-5-5",
+            "claude-haiku-4-5",
+            "claude-fable-5-1"
+          ],
+          "hint": "Sonnet 5.5: drafting & everyday agents. Opus 5.5: high-stakes reasoning. Haiku 4.5: high-volume classify/extract. Fable 5.1: hardest long-horizon work (costliest)."
+        },
+        {
+          "key": "effort",
+          "label": "Effort",
+          "type": "select",
+          "options": [
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max"
+          ],
+          "hint": "Thinking depth vs cost. Try lower effort before a bigger model. Not supported on Haiku 4.5."
+        },
+        {
+          "key": "strictJson",
+          "label": "Needs strict JSON output",
+          "type": "boolean",
+          "hint": "Use structured outputs (forced tool_choice is rejected on Sonnet/Opus 5.5 and Fable 5.1)."
         },
         {
           "key": "functions",
