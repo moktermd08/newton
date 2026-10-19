@@ -156,8 +156,11 @@ function loadAgent() {
 async function loadCases() {
   // The served-model assertion only runs when --model is given, so make it mandatory.
   if (!process.argv.includes('--model')) throw new Error('pass --model <id> (e.g. claude-sonnet-5-5) so the served model can be verified');
+  const oi = process.argv.indexOf('--only');
+  const only = oi >= 0 ? (process.argv[oi + 1] ?? '').split(',') : null;
   loadAgent(); // fail before spending if the lab data is broken
   return JSON.parse(readFileSync(join(ROOT, FLOW_DIR, 'cases.json'), 'utf8'))
+    .filter((c) => !only || only.includes(c.id))
     .map((c) => ({ ...c, prompt: c.input, meta: { watch: c.watch } }));
 }
 
@@ -231,6 +234,7 @@ function parseArgs(argv) {
     else if (k === '--concurrency') a.concurrency = +val(++i);
     else if (k === '--timeout-s') a.timeoutS = +val(++i);
     else if (k === '--approve-harness') a.approveHarness = true;
+    else if (k === '--only') a.only = val(++i).split(',');
     else if (k === '-h' || k === '--help') { usage(); process.exit(0); }
     else { eprint(`unknown argument: ${k}`); usage(); process.exit(2); }
   }
@@ -248,7 +252,7 @@ function parseArgs(argv) {
   return a;
 }
 function usage() {
-  eprint('usage: node run-eval.mjs --flow DIR --variant ID [--model ID] [--reps N] [--concurrency N] [--timeout-s N (0 = no ceiling)] [--approve-harness]');
+  eprint('usage: node run-eval.mjs --flow DIR --variant ID [--model ID] [--reps N] [--concurrency N] [--timeout-s N (0 = no ceiling)] [--only ID[,ID]] [--approve-harness]');
 }
 
 // Harness integrity gate. The hillclimb loop gets this runner command

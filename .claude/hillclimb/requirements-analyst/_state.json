@@ -64,5 +64,6 @@
   "harness_paths": [
     "scripts/eval/requirements-analyst/checks.mjs",
     ".claude/hillclimb/requirements-analyst/cases.json"
-  ]
+  ],
+  "harness_sha": "2499c32a7a181106569e8566b10cd4fe0c8b75c07085475d196d81bdc2edb8d4"
 }
