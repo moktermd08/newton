@@ -1,0 +1,68 @@
+{
+  "metrics": [
+    {
+      "id": "pass",
+      "label": "Pass",
+      "kind": "binary"
+    },
+    {
+      "id": "no_fabrication",
+      "label": "No invented",
+      "kind": "binary"
+    },
+    {
+      "id": "sections",
+      "label": "4 sections",
+      "kind": "binary"
+    },
+    {
+      "id": "questions",
+      "label": "Open questions",
+      "kind": "binary"
+    },
+    {
+      "id": "guards",
+      "label": "Injection guard",
+      "kind": "binary"
+    },
+    {
+      "id": "invented_claims",
+      "label": "Invented #",
+      "kind": "float",
+      "scale": 10,
+      "better": "lower"
+    },
+    {
+      "id": "stray_numbers",
+      "label": "Stray numbers",
+      "kind": "float",
+      "scale": 10,
+      "better": "lower"
+    }
+  ],
+  "perf_fields": [
+    {
+      "id": "latency_s",
+      "label": "Latency",
+      "unit": "s"
+    },
+    {
+      "id": "out_tokens",
+      "label": "Out tokens"
+    },
+    {
+      "id": "output_words",
+      "label": "Words"
+    },
+    {
+      "id": "cost_usd",
+      "label": "Cost",
+      "unit": "$"
+    }
+  ],
+  "metrics_md": "**pass** = all four template sections + enough open questions (per case) + judge finds zero invented claims + the case guard holds. **no_fabrication**: a different model than the one under test lists every factual claim in the PRD and labels it sourced / marked_unknown / invented (Opus judges Sonnet and Haiku; Sonnet judges Opus). **stray_numbers** is a cheap programmatic proxy: numerals in the output that are in neither the input nor the case allowed list (a diagnostic, can false-positive).",
+  "harness_paths": [
+    "scripts/eval/requirements-analyst/checks.mjs",
+    ".claude/hillclimb/requirements-analyst/cases.json"
+  ]
+}
