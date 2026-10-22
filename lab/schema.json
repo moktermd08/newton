@@ -392,8 +392,8 @@
     {
       "id": "data",
       "createdAt": "2026-10-18T00:00:00.000Z",
-      "updatedAt": "2026-10-18T00:00:00.000Z",
-      "rev": 1,
+      "updatedAt": "2026-10-22T20:38:49.788Z",
+      "rev": 2,
       "label": "Data",
       "description": "Small sample datasets for trying patterns and agents before they touch live data.",
       "icon": "database",
@@ -404,6 +404,18 @@
           "label": "Name",
           "type": "text",
           "required": true
+        },
+        {
+          "key": "category",
+          "label": "Category",
+          "type": "select",
+          "required": true,
+          "options": [
+            "People",
+            "Product",
+            "Service",
+            "Company"
+          ]
         },
         {
           "key": "kind",
