@@ -53,3 +53,6 @@
     .hero h1 { font-size: 26px; }
   }
 }
+
+/* Data categories sit indented under the Data link in the admin nav. */
+.nav-link[href^="/admin/lab/data-category/"] { margin-left: 18px; }

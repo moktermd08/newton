@@ -14,6 +14,57 @@
         "rough": "Customers forget to pay. Send them nudges. Maybe SMS?"
       },
       "category": "Product"
+    },
+    {
+      "id": "sample-person",
+      "createdAt": "2026-10-22T20:41:34.428Z",
+      "updatedAt": "2026-10-22T20:41:34.428Z",
+      "rev": 1,
+      "name": "Sample person",
+      "category": "People",
+      "kind": "sample",
+      "description": "A made-up customer contact for trying patterns and agents.",
+      "source": "hand-written",
+      "content": {
+        "name": "Amira Rahman",
+        "role": "Operations manager",
+        "email": "amira@example.com",
+        "company": "Northwind Traders"
+      }
+    },
+    {
+      "id": "sample-service",
+      "createdAt": "2026-10-22T20:41:34.428Z",
+      "updatedAt": "2026-10-22T20:41:34.428Z",
+      "rev": 1,
+      "name": "Sample service",
+      "category": "Service",
+      "kind": "sample",
+      "description": "A made-up service offering.",
+      "source": "hand-written",
+      "content": {
+        "name": "Onboarding setup",
+        "description": "Two-week guided setup for new customers.",
+        "price": "1500 GBP fixed",
+        "owner": "Customer success"
+      }
+    },
+    {
+      "id": "sample-company",
+      "createdAt": "2026-10-22T20:41:34.428Z",
+      "updatedAt": "2026-10-22T20:41:34.428Z",
+      "rev": 1,
+      "name": "Sample company",
+      "category": "Company",
+      "kind": "sample",
+      "description": "A made-up company profile.",
+      "source": "hand-written",
+      "content": {
+        "name": "Northwind Traders",
+        "industry": "Wholesale",
+        "size": "50-200",
+        "country": "United Kingdom"
+      }
     }
   ]
 }
